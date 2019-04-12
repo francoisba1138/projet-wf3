@@ -3,8 +3,10 @@
 {% block body %}
     {{ dump(response) }}
 
-   {% for game in response %}
-       {{ game.name }}"><br>
+    {% for game in response %}
+        {{ game.name }}<br>
+        {{ game.slug }}<br>
+        {{ game.cover }}<br>
     {% endfor %}
 
 {% endblock %}
