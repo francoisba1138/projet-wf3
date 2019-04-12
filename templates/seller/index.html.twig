@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SellerController!{% endblock %}
+
+{% block body %}
+
+    {% for seller in sellers %}
+
+    <p>
+        <a href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} - {{ seller.shopName }}</a>
+    </p>
+
+    {% endfor %}
+
+
+
+{% endblock %}
