@@ -30,9 +30,14 @@ class APIController extends AbstractController
                 ]
         );
 
+
         return $this->render(
             'api/index.html.twig', [
             'response' => json_decode($response->getBody()->getContents())
         ]);
     }
+
+
+
+
 }
