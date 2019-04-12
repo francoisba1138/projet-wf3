@@ -13,21 +13,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class APIController extends AbstractController
 {
     /**
-     * @Route("/api/search")
+     * @Route("/api/search/{name}")
      */
-    public function index()
+    public function index($name)
     {
 
         $client = new FileGetContents(new Psr17Factory());
         $browser = new Browser($client, new Psr17Factory());
 
         $response = $browser->get(
-            "https://api-v3.igdb.com/games/count?filter[rating][gt]=75",
+            "https://api-v3.igdb.com/games?fields=*&search=" . $name,
 
-            [
-                'user-key' => '128f06a547525a39878205e49b57fa50',
-                "Accept" => "application/json"
-            ]
+                [
+                    'user-key' => '128f06a547525a39878205e49b57fa50',
+                    "Accept" => "application/json"
+                ]
         );
 
 

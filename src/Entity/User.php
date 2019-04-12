@@ -35,6 +35,82 @@ class User
     private $lastname;
 
     /**
+     *
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $shopName;
+
+    /**
+     * @return mixed
+     */
+    public function getShopName()
+    {
+        return $this->shopName;
+    }
+
+    /**
+     * @param mixed $shopName
+     * @return User
+     */
+    public function setShopName($shopName)
+    {
+        $this->shopName = $shopName;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
+    }
+
+    /**
+     * @param mixed $presentation
+     * @return User
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     * @return User
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+
+    /**
+     *
+     * @ORM\Column(type="text", length=500, nullable=true)
+     */
+    private $presentation;
+
+
+    /**
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $address;
@@ -65,6 +141,10 @@ class User
      * @ORM\OneToMany(targetEntity="App\Entity\Ad", mappedBy="buyer")
      */
     private $buyerAds;
+
+
+
+
 
     public function __construct()
     {
