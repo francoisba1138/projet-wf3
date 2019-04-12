@@ -30,7 +30,7 @@ class Game
     private $platform;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $date;
 
