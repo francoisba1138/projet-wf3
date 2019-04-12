@@ -22,12 +22,12 @@ class APIController extends AbstractController
         $browser = new Browser($client, new Psr17Factory());
 
         $response = $browser->get(
-            "https://api-v3.igdb.com/games?fields=*&search=" . $name,
+            "https://api-v3.igdb.com/covers?fields=*&search=" . $name,
 
-                [
-                    'user-key' => '128f06a547525a39878205e49b57fa50',
-                    "Accept" => "application/json"
-                ]
+            [
+                'user-key' => '128f06a547525a39878205e49b57fa50',
+                "Accept" => "application/json"
+            ]
         );
 
         return $this->render(
