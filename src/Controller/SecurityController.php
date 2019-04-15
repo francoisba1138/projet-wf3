@@ -16,7 +16,7 @@ class SecurityController extends AbstractController
      */
     public function register(
         Request $request,
-        UserPasswordEncoderInterface $passwordEncoder
+        UserPasswordEncoderInterface $passwordEncoder, $originalImage
     ) {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -25,6 +25,7 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
                 // encode le mot de passe à partir de la config "encoders"
                 // de config/packages/security.yaml
                 $password = $passwordEncoder->encodePassword(

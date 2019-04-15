@@ -22,7 +22,7 @@ class GameController extends AbstractController
     public function index()
     {
 
-        return $this->render('admin/seller/index.html.twig');
+        return $this->render('admin/game/index.html.twig');
 
 
     }

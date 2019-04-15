@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Inscription</h1>
-
+<div class=container">
     <td>{{ form_start(form) }}</td>
     <td>{{ form_row(form.role) }}</td>
     <td>{{ form_row(form.image) }}</td>
@@ -16,5 +16,6 @@
     <button type="submit" class="btn btn-primary">
             Enregistrer
     </button>
-    {{ form_end(form) }}
+    <td>{{ form_end(form) }}<td>
+</div>
 {% endblock %}
