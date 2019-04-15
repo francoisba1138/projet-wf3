@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h1>Gestion Membres</h1>
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>E-mail</th>
+            <th>Présentation</th>
+            <th colspan="3"></th>
+
+        </tr>
+
+
+        {%  for buyer in buyers %}
+
+
+            <tr>
+                <td>{{ buyer.id }}</td>
+                <td>{{ buyer.lastname }}</td>
+                <td>{{ buyer.firstname }}</td>
+                <td>{{ buyer.email }}</td>
+                <td>{{ buyer.presentation }}</td>
+
+
+                </td>
+                <td><a href="{{ path('app_admin_buyer_detail', {'id': buyer.id }) }}" class="btn btn-outline-primary btn-sm mb-3">Modifier</a>
+                    <a href="" class="btn btn-outline-danger btn-delete btn-sm mb-3">Supprimer</a>
+                    <a href="{{ path('app_admin_buyer_ajaxcontent', {'id': buyer.id }) }}" class="btn btn-outline-secondary btn-user-content btn-sm mb-3">Aperçu</a></td>
+
+            </tr>
+
+        {% endfor %}
+
+    </table>
+    {# Modale suppression #}
+    <div class="modal" tabindex="-1" role="dialog" id="modal-confirm-delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Etes-vous sûr.e de vouloir supprimer ce membre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary btn-confirm-delete">Oui</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {# Modale aperçu du membre #}
+    <div class="modal" tabindex="-1" role="dialog" id="modal-user-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aperçu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {# reprend le contenu du bloc javascripts de base.html.twig #}
+        {{ parent() }}
+        <script src="{{ asset('js/admin_user.js') }}"></script>
+
+    {% endblock %}
+
+
+
+
+{% endblock %}

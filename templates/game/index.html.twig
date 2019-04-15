@@ -3,7 +3,8 @@
 {% block body %}
 
     {% for game in games %}
-        <p>{{ game }}</p>
+        <li>{{ game }}</li>
+        <li>{{ game.platform }}</li>
     {% endfor %}
 
 {% endblock %}

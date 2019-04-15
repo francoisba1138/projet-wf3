@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Inscription</h1>
-<form>
+
     <td>{{ form_start(form) }}</td>
     <td>{{ form_row(form.role) }}</td>
     <td>{{ form_row(form.image) }}</td>
@@ -16,6 +16,5 @@
     <button type="submit" class="btn btn-primary">
             Enregistrer
     </button>
-</form>
     {{ form_end(form) }}
 {% endblock %}
