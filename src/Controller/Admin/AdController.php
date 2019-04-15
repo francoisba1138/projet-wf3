@@ -3,6 +3,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Ad;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,6 +23,17 @@ class AdController extends AbstractController
     {
 
         return $this->render('admin/ad/index.html.twig');
+
+
+    }
+
+    /**
+     * @Route("/{id}")
+     */
+    public function detail(Ad $ad)
+    {
+
+        return $this->render('admin/ad/detail.html.twig');
 
 
     }

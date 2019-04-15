@@ -27,6 +27,18 @@ class CommentController extends AbstractController
     }
 
 
+    /**
+     * @Route("/{id}")
+     */
+    public function detail()
+    {
+
+        return $this->render('admin/comment/detail.html.twig');
+
+
+    }
+
+
 
 
 
