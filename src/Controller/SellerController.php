@@ -45,10 +45,7 @@ class SellerController extends AbstractController
      * @Route("/{id}", requirements={"id": "\d+"})
      */
     public function detail(User $seller)
-
-
     {
-        dump($seller);
 
         $role= $seller->getRole();
 
