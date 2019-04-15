@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h1>Gestion Vendeurs</h1>
+
+
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Boutique</th>
+            <th>Adresse</th>
+            <th>E-mail</th>
+            <th>Présentation</th>
+            <th></th>
+
+        </tr>
+
+
+        {%  for seller in sellers %}
+
+
+            <tr>
+                <td>{{ seller.id }}</td>
+                <td>{{ seller.lastname }}</td>
+                <td>{{ seller.firstname }}</td>
+                <td>{{ seller.shopName }}</td>
+                <td>{{ seller.address }}</td>
+                <td>{{ seller.email }}</td>
+                <td>{{ seller.presentation }}</td>
+
+                </td>
+                <td><a href="" class="btn btn-outline-primary btn-sm mb-3">Modifier</a>
+                <a href="" class="btn btn-outline-danger btn-delete btn-sm mb-3">Supprimer</a>
+                <a href="" class="btn btn-outline-secondary btn-article-content btn-sm mb-3">Aperçu</a></td>
+
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+
+
+
+
+{% endblock %}

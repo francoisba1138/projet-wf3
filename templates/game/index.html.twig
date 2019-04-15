@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<ul>
     {% for game in games %}
-        {{ game }}
+
+           <li>
+           {{ game }} - {{ game.date|date('Y') }}
+           </li>
+
+
     {% endfor %}
+</ul>
 
 {% endblock %}
