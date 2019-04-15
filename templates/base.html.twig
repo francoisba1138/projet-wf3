@@ -6,14 +6,15 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('lib/bootstrap/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         {% endblock %}
     </head>
     <body>
 
     <!-- Menu Admin -->
-   {%  if is_granted('ROLE_ADMIN') %}
+   {% if is_granted('ROLE_ADMIN') %}
     <ul class="nav justify-content-center">
+        <i class="nav-item fas fa-tools"></i>
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_buyer_index') }}">Membres</a>
         </li>
@@ -29,6 +30,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_game_index') }}">Jeux</a>
         </li>
+        <i class="nav-item fas fa-tools"></i>
     </ul>
    {%  endif %}
     <!-- /Menu Admin -->
