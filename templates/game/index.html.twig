@@ -3,7 +3,7 @@
 {% block body %}
 
     {% for game in games %}
-        {{ game }}
+        <p><a href="{{ path('app_game_detail', {'id': game.id}) }}">{{ game }}</a></p>
     {% endfor %}
 
 {% endblock %}

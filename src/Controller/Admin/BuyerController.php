@@ -4,6 +4,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,19 +48,43 @@ class BuyerController extends AbstractController
     /**
      * @Route("/{id}")
      */
-    public function detail(User $buyer)
+    public function detail(User $buyer, Request $request)
     {
         $role= $buyer->getRole();
 
         if ($role=='ROLE_BUYER') {
 
 
+            $form = $this->createForm(UserType::class, $buyer );
+            $form->handleRequest($request);
+
+            if( $form->isSubmitted()){
+                if( $form->isValid() ) {
+                    $em->persist($buyer);
+                    $em->flush();
+
+                }
+
+            }
+
+
+
+
             return $this->render('admin/buyer/detail.html.twig',
                 [
-                    'buyer' => $buyer
+                    'buyer' => $buyer,
+                    'form' => $form->createView()
 
                 ]
             );
+
+
+
+
+
+
+
+
         } else {
 
             return $this->redirectToRoute('app_index_index');
@@ -74,7 +99,15 @@ class BuyerController extends AbstractController
 
 
 
-    
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,7 +118,7 @@ class BuyerController extends AbstractController
     public function ajaxContent(Request $request, User $buyer)
     {
 
-        if( $request->isXmlHttpRequest() ) {
+        if( $request->isXmlHttpRequest()) {
 
 
 
