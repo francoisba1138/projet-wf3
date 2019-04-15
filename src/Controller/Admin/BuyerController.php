@@ -163,7 +163,7 @@ class BuyerController extends AbstractController
     public function ajaxContent(Request $request, User $buyer)
     {
 
-        if( $request->isXmlHttpRequest() ) {
+        if( $request->isXmlHttpRequest()) {
 
 
 
