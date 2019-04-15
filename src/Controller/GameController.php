@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class GameController
  * @package App\Controller
  *
- * @Route("/jeux")
+ * @Route("/jeu")
  */
 class GameController extends AbstractController
 {
@@ -26,5 +26,19 @@ class GameController extends AbstractController
         return $this->render('game/index.html.twig', [
             'games' => $games
         ]);
+    }
+
+    /**
+     * @Route("/{id}", requirements={"id": "\d+"})
+     */
+    public function detail(Game $game)
+    {
+
+        return $this->render(
+            'game/detail.html.twig',
+            [
+                'game' => $game
+            ]
+        );
     }
 }
