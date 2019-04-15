@@ -1,0 +1,21 @@
+{% extends'base.html.twig' %}
+
+{% block body %}
+    <h1>Inscription</h1>
+<form>
+    <td>{{ form_start(form) }}</td>
+    <td>{{ form_row(form.role) }}</td>
+    <td>{{ form_row(form.image) }}</td>
+    <td>{{ form_row(form.lastname)}}</td>
+    <td>{{ form_row(form.firstname)}}</td>
+    <td>{{ form_row(form.email) }}</td>
+    <td>{{ form_row(form.plainPassword)}}</td>
+    <td>{{ form_row(form.shopName)}}</td>
+    <td>{{ form_row(form.address)}}</td>
+    <td>{{ form_row(form.presentation) }}</td>
+    <button type="submit" class="btn btn-primary">
+            Enregistrer
+    </button>
+</form>
+    {{ form_end(form) }}
+{% endblock %}
