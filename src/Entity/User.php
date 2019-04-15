@@ -79,6 +79,15 @@ class User
     private $role = "ROLE_USER";
 
     /**
+     * Mot de passe en clair pour interagir avec le formulaire d'inscription
+     *
+     * @var string
+     *
+     * @Assert\NotBlank(message="Le mot de passe est obligatoire")
+     */
+    private $plainPassword;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ad", mappedBy="seller")
      */
     private $sellerAds;
@@ -237,6 +246,26 @@ class User
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     * @return User
+     */
+
+    public function setPlainPassword(string $plainPassword): User
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }

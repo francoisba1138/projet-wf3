@@ -12,7 +12,7 @@
     <body>
 
     <!-- Menu Admin -->
-
+   {% if is_granted('ROLE_ADMIN') %}
     <ul class="nav justify-content-center">
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_buyer_index') }}">Membres</a>
@@ -30,7 +30,7 @@
             <a class="nav-link" href="{{ path('app_admin_game_index') }}">Jeux</a>
         </li>
     </ul>
-
+   {% endif %}
     <!-- /Menu Admin -->
 
 
@@ -56,21 +56,24 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
                 </ul>
+            {% if app.user is null %}
             <ul class=" ml-auto navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a>
+                    <a class="nav-link" href="{{ path('app_security_register') }}">Inscription</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a>
+                    <a class="nav-link" href="{{ path('app_security_login') }}">Connexion</a>
                 </li>
+                {% else %}
                 <li class="nav-item dropdown">
                     <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Mon Compte
+                        {{ app.user }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Mon Profil</a>
                         <a class="dropdown-item" href="#">Mes Annonces</a>
-                        <a class="dropdown-item" href="#">Deconnexion</a>
+                        <a class="dropdown-item" href="{{ path('app_security_logout') }}">Deconnexion</a>
+                        {% endif %}
                     </div>
                 </li>
             </ul>
@@ -81,9 +84,19 @@
     <!-- / Menu Utilisateurs -->
 
 
-        {% block body %}{% endblock %}
 
 
+
+
+
+
+
+
+
+
+
+        {% block body %}
+        {% endblock %}
 
         {% block javascripts %}
             <script
@@ -93,7 +106,6 @@
             </script>
             <script src="{{ asset('lib/bootstrap/bootstrap.min.js') }}" ></script>
             <script src="{{ asset('js/main.js') }}" ></script>
-
         {% endblock %}
     </body>
 </html>
