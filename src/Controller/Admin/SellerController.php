@@ -21,8 +21,23 @@ class SellerController extends AbstractController
      */
     public function index()
     {
+        $repository = $this->getDoctrine()->getRepository(User::class);
 
-        return $this->render('admin/seller/index.html.twig');
+        $sellers =$repository->findBy(
+            [
+                'role' => 'ROLE_SELLER'
+            ]
+        );
+
+        return $this->render('admin/seller/index.html.twig',
+
+            [
+                'sellers' => $sellers
+
+            ]
+
+
+        );
 
 
     }
@@ -32,11 +47,28 @@ class SellerController extends AbstractController
      */
     public function detail(User $seller)
     {
+        $role= $seller->getRole();
 
-        return $this->render('admin/seller/detail.html.twig');
+        if ($role=='ROLE_SELLER') {
 
 
+            return $this->render('admin/seller/detail.html.twig',
+                [
+                    'seller' => $seller
+
+                ]
+            );
+        } else {
+
+            return $this->redirectToRoute('app_index_index');
+        }
     }
+
+
+
+
+
+
 
 
 
