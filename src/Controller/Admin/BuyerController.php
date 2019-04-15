@@ -3,6 +3,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,7 +27,16 @@ class BuyerController extends AbstractController
 
     }
 
+    /**
+     * @Route("/{id}")
+     */
+    public function detail(User $buyer)
+    {
 
+        return $this->render('admin/buyer/detail.html.twig');
+
+
+    }
 
 
 
