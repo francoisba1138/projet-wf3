@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <tr>
+        <td>Titre</td>
+        <td>Plateforme</td>
+        <td>Date de sortie</td>
+        <td>Image</td>
+    </tr>
+    <tr>
+        <td>{{ game }}</td>
+        <td>{{ game.platform }}</td>
+        <td>{{ game.date.format("d-m-Y") }}</td>
+        <img src="{{ asset('img/' ~ game.cover) }}" alt="...">
+    </tr>
+{% endblock %}
