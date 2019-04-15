@@ -12,7 +12,7 @@
     <body>
 
     <!-- Menu Admin -->
-   {# if is_granted('ROLE_ADMIN') #}
+   {%  if is_granted('ROLE_ADMIN') %}
     <ul class="nav justify-content-center">
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_buyer_index') }}">Membres</a>
@@ -30,7 +30,7 @@
             <a class="nav-link" href="{{ path('app_admin_game_index') }}">Jeux</a>
         </li>
     </ul>
-   {# endif #}
+   {%  endif %}
     <!-- /Menu Admin -->
 
 
@@ -83,20 +83,11 @@
 
     <!-- / Menu Utilisateurs -->
 
-
-
-
-
-
-
-
-
-
-
-
+    <div class="container">
 
         {% block body %}
         {% endblock %}
+    </div>
 
         {% block javascripts %}
             <script
