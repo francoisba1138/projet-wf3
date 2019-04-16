@@ -51,7 +51,9 @@ class User implements UserInterface
 
     /**
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\Image(mimeTypesMessage="Le fichier doit être une image")
      */
     private $image;
 
@@ -84,7 +86,8 @@ class User implements UserInterface
      *
      * @var string
      *
-     * @Assert\NotBlank(message="Le mot de passe est obligatoire")
+     * Mot de passe obligatoire uniquement en création
+     * @Assert\NotBlank(groups={"registration"}, message="Le mot de passe est obligatoire")
      */
     private $plainPassword;
 

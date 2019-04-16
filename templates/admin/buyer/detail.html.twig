@@ -10,9 +10,15 @@
     {{ form_row(form.email) }}
     {{ form_row(form.address) }}
     {{ form_row(form.presentation) }}
-    {{ form_row(form.image) }}
-    <input type="submit" value="Modifier" class="btn btn-outline-primary">
+    {%  if original_image %}
+    <img src="{{ asset('img/profile/' ~ original_image) }}" height="200px">
+    {% endif %}
+    {{  form_row(form.image) }}
 
+
+    {{ form_row(form.role) }}
+    
+    <input type="submit" value="Modifier" class="btn btn-outline-primary mb-3">
     {{ form_end(form) }}
 
 

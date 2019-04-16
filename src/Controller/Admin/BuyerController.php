@@ -4,9 +4,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\BuyeradminType;
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,38 +55,89 @@ class BuyerController extends AbstractController
     public function detail(User $buyer, Request $request)
     {
         $role= $buyer->getRole();
+        $em = $this->getDoctrine()->getManager();
+        $originalImage = null;
+
 
         if ($role=='ROLE_BUYER') {
 
-
-            $form = $this->createForm(UserType::class, $buyer );
-            $form->handleRequest($request);
-
-            if( $form->isSubmitted()){
-                if( $form->isValid() ) {
-                    $em->persist($buyer);
-                    $em->flush();
-
-                }
-
+            // si le buyer contient une image
+            if( !is_null($buyer->getImage()) ) {
+                // nom du fichier venant de la bdd
+                $originalImage = $buyer->getImage();
+                // on sette l'image avec un objet File sur l'emplacement de l'image
+                // pour le traitement par le formulaire
+                $buyer->setImage(
+                    new File($this->getParameter('profile_dir') . $originalImage)
+                );
             }
 
 
 
 
+
+            $form = $this->createForm(BuyeradminType::class, $buyer );
+            $form->handleRequest($request);
+
+
+            dump($form);
+
+            if( $form->isSubmitted()){
+
+                dump($form->isValid());
+                if( $form->isValid() ) {
+
+
+                    /** @var UploadedFile $image */
+                    $image = $buyer->getImage();
+
+                    dump($image);
+
+
+                    // s'il y a eu une image uploadée
+                    if( !is_null($image) ) {
+
+                        // nom sous lequel on va enregistrer l'image
+                        $filename = uniqid() . '.' . $image->guessExtension();
+                        // déplace l'image uploadée
+                        $image->move(
+                        // vers le répertoire /public/images.profile
+                        // cf config/services.yaml
+                            $this->getParameter('profile_dir'),
+                            // nom du fichier
+                            $filename
+                        );
+                        // on sette l'attribut image de l'article avec son nom
+                        // pour enregistrement en bdd
+                        $buyer->setImage($filename);
+
+                        if( !is_null($originalImage) ) {
+                            unlink($this->getParameter('profile_dir') . $originalImage);
+                        }
+                    } else {
+                            // en modification, sans upload, on sette l'attribut image
+                            // avec le nom de l'ancienne image
+                            $buyer->setImage($originalImage);
+                        }
+
+                    $em->persist($buyer);
+                    $em->flush();
+                    $this->addFlash('success', "Le membre est enregistré");
+                    return $this->redirectToRoute('app_admin_buyer_index');
+
+                }else {
+                    $this->addFlash('error', 'Le formulaire contient des erreurs');
+                }
+            }
+
             return $this->render('admin/buyer/detail.html.twig',
                 [
-                    'buyer' => $buyer,
-                    'form' => $form->createView()
+
+                    'form' => $form->createView(),
+                    'original_image' => $originalImage
 
                 ]
             );
-
-
-
-
-
-
 
 
         } else {

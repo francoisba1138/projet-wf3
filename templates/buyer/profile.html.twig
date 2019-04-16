@@ -6,7 +6,11 @@
 
 
     {{ buyer.presentation}}<br>
-    {{ buyer.image}}<br>
+
+
+    {%  if buyer.image %}
+        <img src="{{ asset('/img/profile/' ~ buyer.image) }}" height="200px">
+    {% endif %}
 
 {% endblock %}
 
