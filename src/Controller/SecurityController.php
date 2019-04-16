@@ -13,15 +13,34 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/inscription")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function register(
-        Request $request,
-        UserPasswordEncoderInterface $passwordEncoder, $originalImage
+        Request $request, UserPasswordEncoderInterface $passwordEncoder, $id
     ) {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        $originalImage = null;
+        $user = $em->find(User::class, $id);
+        if( is_null($user) ) {
+            throw new NotFoundHttpException();
+        }
+        // si l'article contient une image
+        if( !is_null($user->getImage()) ) {
+            // nom du fichier venant de la bdd
+            $originalImage = $user->getImage();
+            // on sette l'image avec un objet File sur l'emplacement de l'image
+            // pour le traitement par le formulaire
+            $user->setImage(
+                new File($this->getParameter('profile_dir') . $originalImage)
+            );
+        }
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
