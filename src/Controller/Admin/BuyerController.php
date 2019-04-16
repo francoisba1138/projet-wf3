@@ -179,7 +179,7 @@ class BuyerController extends AbstractController
 
 
             return $this->render(
-                'admin/user/ajax_content.html.twig',
+                'admin/buyer/ajax_content.html.twig',
                 ['buyer' => $buyer]
             );
 

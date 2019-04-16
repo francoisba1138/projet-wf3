@@ -1,10 +1,22 @@
 <h1>{{ buyer }}</h1>
-<h2>{{ buyer.shopName }}</h2>
-<p><{{ buyer.address }}/p>
-<p><{{ buyer.email }}/p>
-<p><{{ buyer. }}/p>
+<p><i class="far fa-address-book"></i> {{ buyer.address }}</p>
+<p><i class="fas fa-at"></i> {{ buyer.email }}</p>
 
-{% if buyer.image is not null %}
+
+
+<h2>Présentation :</h2>
+<p>{{ buyer.presentation|nl2br }} </p>
+
+
+
+
+{% if buyer.image is null %}
+
+    <div class="text-center">
+        <img src="img/profile/default-avatar.png" width="100px" alt="">
+    </div>
+
+{% else %}
 
     <div class="text-center">
         <img src="{{ asset('img/profile/' ~ buyer.image) }}" width="100px" alt="">
@@ -12,9 +24,4 @@
 
 
 {% endif %}
-
-<p>{{ buyer.presentation|nl2br }} </p>
-
-
-</a>
 
