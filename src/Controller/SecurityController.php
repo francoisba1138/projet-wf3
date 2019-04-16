@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,38 +13,64 @@ use Symfony\Component\Routing\Annotation\Route;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/inscription")
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route("/inscription", defaults={"id": null}, requirements={"id": "\d+"}))
      */
     public function register(
-        Request $request, UserPasswordEncoderInterface $passwordEncoder, $id
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder
     ) {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-
-        $form->handleRequest($request);
-
-        $em = $this->getDoctrine()->getManager();
         $originalImage = null;
-        $user = $em->find(User::class, $id);
-        if( is_null($user) ) {
-            throw new NotFoundHttpException();
-        }
-        // si l'article contient une image
-        if( !is_null($user->getImage()) ) {
-            // nom du fichier venant de la bdd
-            $originalImage = $user->getImage();
-            // on sette l'image avec un objet File sur l'emplacement de l'image
-            // pour le traitement par le formulaire
-            $user->setImage(
-                new File($this->getParameter('profile_dir') . $originalImage)
-            );
-        }
+        $em = $this->getDoctrine()->getManager();
+
+            // si le buyer contient une image
+            if( !is_null($user->getImage()) ) {
+                // nom du fichier venant de la bdd
+                $originalImage = $user->getImage();
+                // on sette l'image avec un objet File sur l'emplacement de l'image
+                // pour le traitement par le formulaire
+                $user->setImage(
+                    new File($this->getParameter('profile_dir') . $originalImage)
+                );
+            }
+
+        $form = $this->createForm(UserType::class, $user,[
+            'validation_groups' => ['registration']
+            ]);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                /** @var UploadedFile $image */
+                $image = $user->getImage();
+                // s'il y a eu une image uploadée
+                if (!is_null($image)) {
+                    // nom sous lequel on va enregistrer l'image
+                    $filename = uniqid() . '.' . $image->guessExtension();
+
+                    // déplace l'image uploadée
+                    $image->move(
+                    // vers le répertoire /public/images
+                    // cf config/services.yaml
+                        $this->getParameter('profile_dir'),
+                        // nom du fichier
+                        $filename
+                    );
+
+                    // on sette l'attribut image de l'article avec son nom
+                    // pour enregistrement en bdd
+                    $user->setImage($filename);
+
+                    // en modification on supprime l'ancienne image
+                    // s'il y en a une
+                    if (!is_null($originalImage)) {
+                        unlink($this->getParameter('profile_dir') . $originalImage);
+                    }
+                } else {
+                    // en modification, sans upload, on sette l'attribut image
+                    // avec le nom de l'ancienne image
+                    $user->setImage($originalImage);
+                }
 
                 // encode le mot de passe à partir de la config "encoders"
                 // de config/packages/security.yaml
@@ -53,8 +80,6 @@ class SecurityController extends AbstractController
                 );
 
                 $user->setPassword($password);
-
-                $em = $this->getDoctrine()->getManager();
 
                 $em->persist($user);
                 $em->flush();
@@ -70,7 +95,8 @@ class SecurityController extends AbstractController
         return $this->render(
             'security/register.html.twig',
             [
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'original_image' => $originalImage
             ]
         );
     }
