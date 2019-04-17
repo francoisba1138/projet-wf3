@@ -3,7 +3,28 @@
 {% block body %}
 
     {% for game in games %}
-        <p><a href="{{ path('app_game_detail', {'id': game.id}) }}">{{ game }}</a></p>
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">Nom du jeu</th>
+        <th scope="col">Platforme</th>
+        <th scope="col">Date de Sortie</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <a href="{{ path('app_game_detail', {'id': game.id}) }}">{{ game.title }}</a>
+        </td>
+        <td>
+            <a href="{{ path('app_game_detail', {'id': game.id}) }}">{{ game.platform}}</a>
+        </td>
+        <td>
+            <a href="{{ path('app_game_detail', {'id': game.id}) }}">{{ game.date.format("d-m-Y") }}</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
     {% endfor %}
 
 {% endblock %}
