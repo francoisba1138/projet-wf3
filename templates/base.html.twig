@@ -112,11 +112,9 @@
         {% endfor %}
 
 
+    {% block body %}
+    {% endblock %}
 
-
-        {% block body %}
-        {% endblock %}
-    </div>
 
         {% block javascripts %}
             <script
@@ -127,5 +125,6 @@
             <script src="{{ asset('lib/bootstrap/bootstrap.min.js') }}" ></script>
             <script src="{{ asset('js/main.js') }}" ></script>
         {% endblock %}
+    </div>
     </body>
 </html>

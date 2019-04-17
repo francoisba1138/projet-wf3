@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-8">
+        <h1>{{ game }}</h1>
+        <p class="h4">{{ game.date|date('Y') }}</p>
+        <p class="h4">{{ game.platform }}</p>
+
+
+    </div>
+    <div class="col-4">
+        {% if game.cover is null %}
+
+            <div class="mx-3 img-thumbnail">
+                <img src="{{ asset('img/cover/default-cover.jpg') }}" width="100%" alt="">
+            </div>
+
+        {% else %}
+
+            <div class="mx-3 img-thumbnail">
+                <img src="{{ asset('img/cover/' ~ game.cover) }}" width="100%" alt="">
+            </div>
+
+
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+

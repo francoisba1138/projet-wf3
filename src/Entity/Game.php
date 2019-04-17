@@ -30,12 +30,13 @@ class Game
     private $platform;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Image(mimeTypesMessage="Le fichier doit être une image.",
      *      maxSize="200k",maxSizeMessage="L'image ne doit pas dépasser 200Ko.")
      */
@@ -92,15 +93,21 @@ class Game
         return $this;
     }
 
-    public function getCover(): ?string
+    /**
+     * @return string
+     */
+    public function getCover()
     {
         return $this->cover;
     }
 
-    public function setCover(?string $cover): self
+    /**
+     * @param string $cover
+     * @return Game
+     */
+    public function setCover($cover)
     {
         $this->cover = $cover;
-
         return $this;
     }
 
