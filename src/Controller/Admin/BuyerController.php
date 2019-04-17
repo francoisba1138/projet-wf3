@@ -172,21 +172,6 @@ class BuyerController extends AbstractController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @Route("/ajax/content/{id}")
      */
@@ -211,6 +196,5 @@ class BuyerController extends AbstractController
         }
 
     }
-
 
 }
