@@ -1,8 +1,27 @@
-<h1>{{ buyer }}</h1>
+<div class="row">
+    <div class="col-8">
+    <h1>{{ buyer }}</h1>
+
 <p><i class="far fa-address-book"></i> {{ buyer.address }}</p>
 <p><i class="fas fa-at"></i> {{ buyer.email }}</p>
+</div>
+    <div class="col-4">
+{% if buyer.image is null %}
+
+    <div class="mx-3 img-thumbnail">
+        <img src="{{ asset('img/profile/default-avatar.png') }}" width="100px" alt="">
+    </div>
+
+{% else %}
+
+    <div class="mx-3 img-thumbnail">
+        <img src="{{ asset('img/profile/' ~ buyer.image) }}" width="100px" alt="">
+    </div>
 
 
+{% endif %}
+    </div>
+</div>
 
 <h2>Présentation :</h2>
 <p>{{ buyer.presentation|nl2br }} </p>
@@ -10,18 +29,5 @@
 
 
 
-{% if buyer.image is null %}
 
-    <div class="text-center">
-        <img src="img/profile/default-avatar.png" width="100px" alt="">
-    </div>
-
-{% else %}
-
-    <div class="text-center">
-        <img src="{{ asset('img/profile/' ~ buyer.image) }}" width="100px" alt="">
-    </div>
-
-
-{% endif %}
 
