@@ -3,12 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Game;
-use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\DateTime;
+
+
 
 class GameadminType extends AbstractType
 {
@@ -25,12 +27,12 @@ class GameadminType extends AbstractType
             ->add('platform',
                 TextType::class,
                 [
-                    'label' => 'Plate-forme'
+                    'label' => 'Plateforme'
                 ]
             )
 
             ->add('date',
-                DateTime::class,
+                DateType::class,
                 [
                     'label' => 'Date'
                 ]
@@ -39,11 +41,12 @@ class GameadminType extends AbstractType
             ->add('cover',
                 FileType::class,
                 [
-                    'label' => 'Visuel',
+                    'label' => 'Image de profil',
                     // champ optionnel
                     'required' => false
                 ]
             )
+
         ;
     }
 
