@@ -80,7 +80,7 @@ class BuyerController extends AbstractController
             $form->handleRequest($request);
 
 
-            dump($form);
+
 
             if( $form->isSubmitted()){
 
@@ -148,7 +148,27 @@ class BuyerController extends AbstractController
 
 
 
+    /**
+     * @Route("/suppression/{id}")
+     */
+    public function delete(User $buyer)
+    {
+        $em = $this->getDoctrine()->getManager();
 
+        if( !is_null($buyer->getImage()) ) {
+
+
+            unlink($this->getParameter('profile_dir') . $buyer->getImage());
+        }
+
+
+        $em->remove($buyer);
+        $em->flush();
+        $this->addFlash('success', "La fiche utilisateur est supprimée");
+        return $this->redirectToRoute('app_admin_buyer_index');
+
+
+    }
 
 
 

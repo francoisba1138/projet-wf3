@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-8">
+        <h1>{{ seller }}</h1>
+
+        <p><i class="far fa-address-book"></i> {{ seller.address }}</p>
+        <p><i class="fas fa-at"></i> {{ seller.email }}</p>
+        <p>{{ seller.shopName }}</p>
+    </div>
+    <div class="col-4">
+        {% if seller.image is null %}
+
+            <div class="mx-3 img-thumbnail">
+                <img src="{{ asset('img/profile/default-avatar.png') }}" width="100px" alt="">
+            </div>
+
+        {% else %}
+
+            <div class="mx-3 img-thumbnail">
+                <img src="{{ asset('img/profile/' ~ seller.image) }}" width="100px" alt="">
+            </div>
+
+
+        {% endif %}
+    </div>
+</div>
+
+<h2>Présentation :</h2>
+<p>{{ seller.presentation|nl2br }} </p>
+
+
