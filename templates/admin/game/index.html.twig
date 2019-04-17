@@ -81,12 +81,11 @@
         </div>
     </div>
 
-    {% block javascripts %}
-        {# reprend le contenu du bloc javascripts de base.html.twig #}
-        {{ parent() }}
-        <script src="{{ asset('js/admin_user.js') }}"></script>
+{% endblock %}
 
-    {% endblock %}
+{% block javascripts %}
 
+    {{ parent() }}
+    <script src="{{ asset('js/admin_user.js') }}"></script>
 
 {% endblock %}
