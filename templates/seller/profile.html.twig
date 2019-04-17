@@ -5,16 +5,11 @@
 
     {{ seller}} - {{ seller.shopName}}<br>
 
-
-
-
     {{ seller.address}}<br>
             {{ seller.presentation}}<br>
-            {{ seller.image}}<br>
-
-
-
-
+        {%  if seller.image %}
+        <img src="{{ asset('/img/profile/' ~ seller.image) }}" height="200px">
+        {% endif %}
 
 {% endblock %}
 

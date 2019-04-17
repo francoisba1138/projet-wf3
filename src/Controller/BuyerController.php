@@ -57,13 +57,17 @@ class BuyerController extends AbstractController
         );
     } else {
 
-return $this->redirectToRoute('app_index_index');
-}
+    return $this->redirectToRoute('app_index_index');
+    }
 
 
 
     }
 
+    public function edit()
+    {
+
+    }
 
 
 }

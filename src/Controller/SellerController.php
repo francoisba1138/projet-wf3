@@ -32,11 +32,10 @@ class SellerController extends AbstractController
 
 
         return $this->render('seller/index.html.twig',
-        [
+            [
             'sellers' => $sellers
-
-        ]
-            );
+            ]
+        );
 
 
     }
