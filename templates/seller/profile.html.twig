@@ -11,12 +11,6 @@
         <img src="{{ asset('/img/profile/' ~ seller.image) }}" height="200px">
         {% endif %}
 
-
-    {%  if app.user.id == seller.id %}
-        <a class="btn btn-primary" href="{{ path('app_seller_edit', {'id': app.user.id }) }}">Modifier</a>
-    {% endif %}
-
-
 {% endblock %}
 
 
