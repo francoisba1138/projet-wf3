@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\BuyerEditType;
+use App\Form\BuyereditType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -53,12 +55,16 @@ class BuyerController extends AbstractController
     {
         $role= $buyer->getRole();
 
+        dump( ($this->getUser())->getId());
+
         if ($role=='ROLE_BUYER') {
 
 
         return $this->render('buyer/profile.html.twig',
             [
-                'buyer' => $buyer
+                'buyer' => $buyer,
+
+
 
             ]
         );

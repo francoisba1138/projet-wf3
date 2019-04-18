@@ -56,7 +56,7 @@ class GameController extends AbstractController
 
 
 
-            // si le game contient une image
+            // si le jeu contient une image
             if( !is_null($game->getCover()) ) {
                 // nom du fichier venant de la bdd
                 $originalImage = $game->getCover();
@@ -69,7 +69,9 @@ class GameController extends AbstractController
 
             $form = $this->createForm(GameadminType::class, $game );
             $form->handleRequest($request);
+        dump($game);
 
+        dump($game->getDate());
             if( $form->isSubmitted()){
 
 
@@ -79,7 +81,9 @@ class GameController extends AbstractController
                     /** @var UploadedFile $cover */
                     $cover = $game->getCover();
 
+
                     dump($cover);
+
 
 
                     // s'il y a eu une image uploadée
@@ -107,6 +111,11 @@ class GameController extends AbstractController
                         // avec le nom de l'ancienne image
                         $game->setCover($originalImage);
                     }
+
+
+
+
+
 
                     $em->persist($game);
                     $em->flush();

@@ -34,14 +34,17 @@ class GameadminType extends AbstractType
             ->add('date',
                 DateType::class,
                 [
-                    'label' => 'Date'
+                    'label' => 'Date',
+
+
+
                 ]
             )
 
             ->add('cover',
                 FileType::class,
                 [
-                    'label' => 'Image de profil',
+                    'label' => 'Visuel',
                     // champ optionnel
                     'required' => false
                 ]
