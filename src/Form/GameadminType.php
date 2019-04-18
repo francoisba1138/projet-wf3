@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Game;
+
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -34,7 +35,10 @@ class GameadminType extends AbstractType
             ->add('date',
                 DateType::class,
                 [
-                    'label' => 'Date'
+                    'label' => 'Date',
+                    'widget' => 'single_text',
+                    'format' => 'yyyy'
+
                 ]
             )
 
