@@ -10,7 +10,7 @@
             <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         {% endblock %}
     </head>
-    <body class="bg">
+    <body>
 
     <!-- Menu Admin -->
    {% if is_granted('ROLE_ADMIN') %}
@@ -38,7 +38,7 @@
 
 
     <!-- Menu Utilisateurs -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav id="front" class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
         <a class="navbar-brand" href="#">Games</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,12 +49,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_seller_index') }}">Vendeurs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_buyer_index') }}">Membres</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_game_index') }}">Jeux</a>
                 </li>
