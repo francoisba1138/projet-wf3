@@ -4,9 +4,15 @@
     <div class="container">
         <div class="well">
             <div class="media">
-                <a class="pull-left">
-                    {{ game.cover }}
-                </a>
+                    {% if game.cover is null %}
+                    <div class="mx-3 img-thumbnail pull-left">
+                        <img src="{{ asset('img/cover/default-cover.jpg') }}" width="100%" alt="">
+                    </div>
+                    {% else %}
+                <div class="mx-3 img-thumbnail pull-left">
+                    <img src="{{ asset('img/cover/' ~ game.cover) }}" width="100%" alt="">
+                </div>
+                {% endif %}
                 <div class="media-body">
                     <h4 class="media-heading">{{ game.title }}</h4>
                     <ul class="list-inline list-unstyled">

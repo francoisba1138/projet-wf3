@@ -3,15 +3,7 @@
 
 
 {% block body %}
-
     {% for buyer in buyers %}
-
        <p> <a href="{{ path('app_buyer_detail', {'id': buyer.id}) }}" class="">{{ buyer }}</a></p>
-
     {% endfor %}
-
-
-
-
-
 {% endblock %}
