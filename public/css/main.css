@@ -1,11 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Advent+Pro:100);
-.bg {
+
+body {
     background:  url(https://i.pinimg.com/originals/29/55/e2/2955e2567f366d2890da3caaf9fde13b.gif) no-repeat center center fixed;
     background-size: cover;
-}
-body {
     height: 100%;
-}
-table, nav a {
-    font-family: 'Press Start 2P', cursive;
 }

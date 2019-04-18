@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\BuyerEditType;
+use App\Form\BuyereditType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -98,7 +98,7 @@ class BuyerController extends AbstractController
 
 
 
-            $form = $this->createForm(BuyerEditType::class, $buyer );
+            $form = $this->createForm(BuyereditType::class, $buyer );
             $form->handleRequest($request);
 
 
