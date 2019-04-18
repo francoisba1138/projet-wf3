@@ -98,7 +98,7 @@ class BuyerController extends AbstractController
 
 
 
-            $form = $this->createForm(BuyerEditType::class, $buyer );
+            $form = $this->createForm(BuyereditType::class, $buyer );
             $form->handleRequest($request);
 
 

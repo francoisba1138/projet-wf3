@@ -3,7 +3,7 @@
 {% block body %}
 
 
-<table class="table table-info table-bordered">
+<table id="front" class="table table-info table-bordered">
     <thead class="font-weight-bolder text-danger">
     <tr>
         <th scope="col">Nom du jeu</th>
@@ -21,7 +21,7 @@
             <a class="text-dark">{{ game.platform}}</a>
         </td>
         <td>
-            <a class="text-dark">{{ game.date.format("d-m-Y") }}</a>
+            <a class="text-dark">{{ game.date.format("Y") }}</a>
         </td>
     </tr>
     {% endfor %}
