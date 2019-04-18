@@ -106,11 +106,6 @@ class User implements UserInterface
      */
     private $comments;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Game", inversedBy="users")
-     */
-    private $collection;
-
 
 
 
@@ -122,7 +117,6 @@ class User implements UserInterface
         $this->buyerAds = new ArrayCollection();
         $this->title = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->collection = new ArrayCollection();
     }
 
 
@@ -459,31 +453,5 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
-    }
-
-    /**
-     * @return Collection|Game[]
-     */
-    public function getCollection(): Collection
-    {
-        return $this->collection;
-    }
-
-    public function addCollection(Game $collection): self
-    {
-        if (!$this->collection->contains($collection)) {
-            $this->collection[] = $collection;
-        }
-
-        return $this;
-    }
-
-    public function removeCollection(Game $collection): self
-    {
-        if ($this->collection->contains($collection)) {
-            $this->collection->removeElement($collection);
-        }
-
-        return $this;
     }
 }

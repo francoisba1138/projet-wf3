@@ -47,15 +47,9 @@ class Game
      */
     private $ads;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="collection")
-     */
-    private $users;
-
     public function __construct()
     {
         $this->ads = new ArrayCollection();
-        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,34 +142,6 @@ class Game
             if ($ad->getGame() === $this) {
                 $ad->setGame(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addCollection($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            $user->removeCollection($this);
         }
 
         return $this;
