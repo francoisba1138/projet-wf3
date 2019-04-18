@@ -4,9 +4,12 @@
     {{ dump(response) }}
 
     {% for game in response %}
-        {{ game.name }}<br>
-        {{ game.slug }}<br>
-        {{ game.cover }}<br>
+        {{ game.name }} - {{ game.slug }}<br>
+
+{% for platform in game.platforms %}
+        {{ platform}}<br>
+{% endfor %}
+
     {% endfor %}
 
 {% endblock %}
