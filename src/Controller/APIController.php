@@ -12,10 +12,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class APIController extends AbstractController
 {
+
+
+
+
+
+
     /**
      * @Route("/api/search/{name}")
      */
-    public function index($name)
+    public function game($name)
     {
 
         $client = new FileGetContents(new Psr17Factory());

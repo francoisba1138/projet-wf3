@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\BuyerEditType;
+use App\Form\BuyereditType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -52,13 +52,17 @@ class BuyerController extends AbstractController
      public function detail(User $buyer)
     {
         $role= $buyer->getRole();
+        $collection= $buyer->getCollection();
+
+        dump($collection);
 
         if ($role=='ROLE_BUYER') {
 
 
         return $this->render('buyer/profile.html.twig',
             [
-                'buyer' => $buyer
+                'buyer' => $buyer,
+                'collection' => $collection
 
             ]
         );
@@ -98,7 +102,7 @@ class BuyerController extends AbstractController
 
 
 
-            $form = $this->createForm(BuyerEditType::class, $buyer );
+            $form = $this->createForm(BuyereditType::class, $buyer );
             $form->handleRequest($request);
 
 
