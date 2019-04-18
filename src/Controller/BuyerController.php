@@ -52,13 +52,17 @@ class BuyerController extends AbstractController
      public function detail(User $buyer)
     {
         $role= $buyer->getRole();
+        $collection= $buyer->getCollection();
+
+        dump($collection);
 
         if ($role=='ROLE_BUYER') {
 
 
         return $this->render('buyer/profile.html.twig',
             [
-                'buyer' => $buyer
+                'buyer' => $buyer,
+                'collection' => $collection
 
             ]
         );

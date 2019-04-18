@@ -8,16 +8,16 @@
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ buyer.firstname}} {{ buyer.lastname }}</h3>
+                        <h3 class="panel-title">{{ buyer }}</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3 col-lg-3 " align="center">
+                            <div class="col-3 " align="center">
                                 {%  if buyer.image %}
                                     <img src="{{ asset('/img/profile/' ~ buyer.image) }}" height="200px">
                                 {% endif %}
                             </div>
-                            <div class=" col-md-9 col-lg-9 pl-5">
+                            <div class=" col-9 pl-5">
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
@@ -37,13 +37,34 @@
             </div>
         </div>
     </div>
-
-
-
     {% if app.user %}
-    {% if app.user.id == buyer.id %}
-        <a class="btn btn-primary" href="{{ path('app_buyer_edit', {'id': app.user.id }) }}">Modifier</a>
+        {% if app.user.id == buyer.id %}
+            <a class="btn btn-primary" href="{{ path('app_buyer_edit', {'id': app.user.id }) }}">Modifier mon Profil</a>
+           
+        {% endif %}
     {% endif %}
+
+    <p>La collection de {{ buyer }}</p>
+
+
+
+
+    {% for jeu in collection %}
+
+        <p>{{ jeu.title }} - ({{ jeu.date|date('Y') }}) - {{ jeu.platform }}</p>
+{% else %}
+
+    <p>{{ buyer }} n'a pas encore de collection </p>
+    {% endfor %}
+    {% if app.user %}
+        {% if app.user.id == buyer.id %}
+          <a class="btn btn-primary" href="#">Ajouter un jeu </a>
+
+        {% endif %}
     {% endif %}
+
+
+
+
 {% endblock %}
 
