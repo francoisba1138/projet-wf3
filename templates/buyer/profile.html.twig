@@ -1,70 +1,31 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Profil de {{ buyer }}{% endblock %}
 {% block body %}
-    <div id="front" class="container">
+    <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-
-
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{ buyer }}</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-3 " align="center">
-                                {%  if buyer.image %}
-                                    <img src="{{ asset('/img/profile/' ~ buyer.image) }}" height="200px">
-                                {% endif %}
-                            </div>
-                            <div class=" col-9 pl-5">
-                                <table class="table table-user-information">
-                                    <tbody>
-                                    <tr>
-                                        <td>Email</td>
-                                        <td><a>{{ buyer.email }}</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>A propos de {{ buyer.firstname}}</td>
-                                        <td>{{ buyer.presentation}}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h1>{{ buyer }}</h1>
         </div>
+        {%  if buyer.image %}
+            <img src="{{ asset('/img/profile/' ~ buyer.image) }}" height="200px">
+        {% endif %}
+        {{ buyer.firstname}}
+        {{ buyer.presentation}}
+        {% if app.user %}
+            {% if app.user.id == buyer.id %}
+                <a class="btn btn-warning" href="{{ path('app_buyer_edit', {'id': app.user.id }) }}">Modifier mon Profil</a>
+            {% endif %}
+        {% endif %}
+        <p>La collection de {{ buyer }}</p>
+        {% for jeu in collection %}
+            <p>{{ jeu.title }} - ({{ jeu.date|date('Y') }}) - {{ jeu.platform }}</p>
+        {% else %}
+            <p>{{ buyer }} n'a pas encore de collection </p>
+        {% endfor %}
+        {% if app.user %}
+            {% if app.user.id == buyer.id %}
+              <a class="btn btn-primary" href="#">Ajouter un jeu </a>
+            {% endif %}
+        {% endif %}
     </div>
-    {% if app.user %}
-        {% if app.user.id == buyer.id %}
-            <a class="btn btn-primary" href="{{ path('app_buyer_edit', {'id': app.user.id }) }}">Modifier mon Profil</a>
-           
-        {% endif %}
-    {% endif %}
-
-    <p>La collection de {{ buyer }}</p>
-
-
-
-
-    {% for jeu in collection %}
-
-        <p>{{ jeu.title }} - ({{ jeu.date|date('Y') }}) - {{ jeu.platform }}</p>
-{% else %}
-
-    <p>{{ buyer }} n'a pas encore de collection </p>
-    {% endfor %}
-    {% if app.user %}
-        {% if app.user.id == buyer.id %}
-          <a class="btn btn-primary" href="#">Ajouter un jeu </a>
-
-        {% endif %}
-    {% endif %}
-
-
-
-
 {% endblock %}
 
