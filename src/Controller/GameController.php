@@ -34,10 +34,14 @@ class GameController extends AbstractController
     public function detail(Game $game)
     {
 
+$users=$game->getUsers();
+
         return $this->render(
             'game/detail.html.twig',
             [
-                'game' => $game
+                'game' => $game,
+                'users' => $users
+
             ]
         );
     }
