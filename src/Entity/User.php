@@ -58,7 +58,6 @@ class User implements UserInterface, \Serializable
     private $image;
 
 
-
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -501,7 +500,10 @@ class User implements UserInterface, \Serializable
             $this->lastname,
             $this->email,
             $this->address,
-            $this->presentation
+            $this->presentation,
+            $this->password
+
+
         ));
     }
 
@@ -522,7 +524,8 @@ class User implements UserInterface, \Serializable
             $this->lastname,
             $this->email,
             $this->address,
-            $this->presentation
+            $this->presentation,
+            $this->password
         ) = unserialize($serialized);
     }
 }
