@@ -58,7 +58,6 @@ class User implements UserInterface
     private $image;
 
 
-
     /**
      * @ORM\Column(type="string", length=100)
      */
