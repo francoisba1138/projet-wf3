@@ -58,6 +58,7 @@ class User implements UserInterface, \Serializable
     private $image;
 
 
+
     /**
      * @ORM\Column(type="string", length=100)
      */
