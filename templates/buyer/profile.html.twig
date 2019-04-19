@@ -8,7 +8,6 @@
         {%  if buyer.image %}
             <img src="{{ asset('/img/profile/' ~ buyer.image) }}" height="200px">
         {% endif %}
-        {{ buyer.email }}
         {{ buyer.firstname}}
         {{ buyer.presentation}}
         {% if app.user %}
