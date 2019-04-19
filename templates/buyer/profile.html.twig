@@ -8,7 +8,7 @@
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ buyer }}</h3>
+                        <h1 class="h3 panel-title">{{ buyer }}</h1>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -44,14 +44,17 @@
         {% endif %}
     {% endif %}
 
-    <p>La collection de {{ buyer }}</p>
+    <h4>La collection de {{ buyer }}</h4>
 
 
 
 
     {% for jeu in collection %}
 
-        <p>{{ jeu.title }} - ({{ jeu.date|date('Y') }}) - {{ jeu.platform }}</p>
+        <p><a href="{{ path('app_game_detail', {'id': jeu.id}) }}">{{ jeu.title }} - ({{ jeu.date|date('Y') }}) - {{ jeu.platform }}</a></p>
+
+
+
 {% else %}
 
     <p>{{ buyer }} n'a pas encore de collection </p>
