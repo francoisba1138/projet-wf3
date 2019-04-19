@@ -44,7 +44,7 @@ class IndexController extends AbstractController
                 $mail
                     ->setSubject('Nouveau message')
                     ->setFrom('contact@game.fr')
-                    ->setTo('guillaume.gosset0405@orange.fr')
+                    ->setTo('contact@game.fr')
                     ->setBody('$mailBody')
                     ->setReplyTo($data['email']);
 
