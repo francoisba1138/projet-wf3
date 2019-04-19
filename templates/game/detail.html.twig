@@ -17,10 +17,29 @@
                     <h4 class="media-heading">{{ game.title }}</h4>
                     <ul class="list-inline list-unstyled">
                         <p>{{ game.platform }}</p>
-                        <p>{{ game.date.format("d-m-Y") }}</p>
+                        <p>{{ game.date.format("Y") }}</p>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <h2>Collections</h2>
+
+    {% for user in users %}
+        <p><strong>{{ game }}</strong> apparaît dans la collection de : </p>
+
+        <p><a href="{{ path('app_buyer_detail', {'id': user.id}) }}">{{ user }} </a></p>
+
+
+
+    {% else %}
+
+        <p><strong>{{ game }}</strong> ne figure dans aucune collection </p>
+    {% endfor %}
+
+
+
+
 {% endblock %}

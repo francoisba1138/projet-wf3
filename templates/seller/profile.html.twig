@@ -11,6 +11,22 @@
         <img src="{{ asset('/img/profile/' ~ seller.image) }}" height="200px">
         {% endif %}
 
+
+    <h2>Les annonces de {{ seller }}</h2>
+
+    {%  for ad in ads %}
+
+        <p>{{ ad.date|date("d/m/Y") }} - <a href="" class=""><strong>{{ ad.title }}</strong></a> - <a href="{{ path('app_game_detail', {'id': ad.game.id}) }}">{{ ad.game }}</a> - {{ ad.status }} (<a
+                    href="{{ path('app_buyer_detail', {'id': ad.buyer.id}) }}">{{ ad.buyer }}</a>)</p>
+
+    {% else %}
+
+        <p>{{ seller }} n'a pas d'annonces en cours</p>
+
+    {% endfor %}
+
+
+
 {% endblock %}
 
 
