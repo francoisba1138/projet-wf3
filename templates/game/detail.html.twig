@@ -6,7 +6,7 @@
             <div class="media">
                     {% if game.cover is null %}
                     <div class="mx-3 img-thumbnail pull-left">
-                        <img src="{{ asset('img/cover/default-cover.jpg') }}" width="100%" alt="">
+                        <img src="{{ asset('img/cover/default-cover.jpg') }}" width="300px" alt="">
                     </div>
                     {% else %}
                 <div class="mx-3 img-thumbnail pull-left">
@@ -14,8 +14,8 @@
                 </div>
                 {% endif %}
                 <div class="media-body">
-                    <h4 class="media-heading">{{ game.title }}</h4>
-                    <ul class="list-inline list-unstyled">
+                    <h4 class="media-heading titre">{{ game.title }}</h4>
+                    <ul class="list-inline list-unstyled texte">
                         <p>{{ game.platform }}</p>
                         <p>{{ game.date.format("d-m-Y") }}</p>
                     </ul>

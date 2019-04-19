@@ -3,6 +3,10 @@ body {
     background-size: cover;
     height: 100%;
 }
-#front {
+.titre {
     font-family: 'Press Start 2P', cursive;
+}
+.texte{
+    font-family: 'VT323', monospace;
+    font-size: 25px;
 }
