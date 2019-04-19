@@ -1,45 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ game.title }}{% endblock %}
 {% block body %}
-    <div class="container">
-        <div class="well">
-            <div class="media">
+    <div class="container bg-custom">
+            <div class="card col-10 mx-auto">
+                <h1 class="titre h3">{{ game.title }}</h1>
+                <div class="card-body d-flex texte">
                     {% if game.cover is null %}
-                    <div class="mx-3 img-thumbnail pull-left">
-                        <img src="{{ asset('img/cover/default-cover.jpg') }}" width="300px" alt="">
-                    </div>
+                            <img class="mx-3 img-thumbnail" src="{{ asset('img/cover/default-cover.jpg') }}" alt="jacquette de {{ game.title }}">
                     {% else %}
-                <div class="mx-3 img-thumbnail pull-left">
-                    <img src="{{ asset('img/cover/' ~ game.cover) }}" width="100%" alt="">
-                </div>
-                {% endif %}
-                <div class="media-body">
-                    <h4 class="media-heading titre">{{ game.title }}</h4>
-                    <ul class="list-inline list-unstyled texte">
-                        <p>{{ game.platform }}</p>
-                        <p>{{ game.date.format("Y") }}</p>
-                    </ul>
+                            <img class="mx-3 img-thumbnail" src="{{ asset('img/cover/' ~ game.cover) }}" alt="jacquette de {{ game.title }}">
+                    {% endif %}
+                    <p><a class="card-text">Plateforme : {{ game.platform }}</a></p>
+                    <p><a class="card-text">Année de sortie {{ game.date.format("Y") }}</a></p>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <h2>Collections</h2>
-
+        <div class="row col-10 mx-auto pt-5">
+    <h2 class="titre">Collections</h2>
     {% for user in users %}
         <p><strong>{{ game }}</strong> apparaît dans la collection de : </p>
-
         <p><a href="{{ path('app_buyer_detail', {'id': user.id}) }}">{{ user }} </a></p>
-
-
-
     {% else %}
-
         <p><strong>{{ game }}</strong> ne figure dans aucune collection </p>
     {% endfor %}
-
-
-
-
+        </div>
+    </div>
 {% endblock %}
+

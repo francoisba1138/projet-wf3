@@ -1,6 +1,7 @@
 body {
-    background:  url(https://i.pinimg.com/originals/29/55/e2/2955e2567f366d2890da3caaf9fde13b.gif) no-repeat center center fixed;
-    background-size: cover;
+    background-position: center;
+    background-image: url('../img/background.gif');
+    background-attachment: fixed;
     height: 100%;
 }
 .titre {
@@ -9,4 +10,8 @@ body {
 .texte{
     font-family: 'VT323', monospace;
     font-size: 25px;
+}
+.bg-custom{
+    background: rgba(255, 255, 255,.5);
+
 }

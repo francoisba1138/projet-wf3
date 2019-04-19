@@ -92,8 +92,6 @@
 
     <!-- / Menu Utilisateurs -->
 
-    <div class="container">
-
         {# affichage des messages flash #}
         {% for type, messages in app.session.flashBag.all %}
 
@@ -109,10 +107,8 @@
                 </div>
             {% endfor %}
         {% endfor %}
+       {% block body %} {% endblock %}
 
-
-    {% block body %}{% endblock %}
-    </div>
 
         {% block javascripts %}
             <script
