@@ -132,7 +132,8 @@ class BuyerController extends AbstractController
                 [
 
                     'form' => $form->createView(),
-                    'original_image' => $originalImage
+                    'original_image' => $originalImage,
+                    'buyer' => $buyer
 
                 ]
             );

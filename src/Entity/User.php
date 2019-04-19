@@ -501,8 +501,10 @@ class User implements UserInterface, \Serializable
             $this->lastname,
             $this->email,
             $this->address,
-            $this->password,
             $this->presentation,
+            $this->password
+
+
         ));
     }
 
@@ -523,8 +525,8 @@ class User implements UserInterface, \Serializable
             $this->lastname,
             $this->email,
             $this->address,
-            $this->password,
-            $this->presentation
-            ) = unserialize($serialized);
+            $this->presentation,
+            $this->password
+        ) = unserialize($serialized);
     }
 }
