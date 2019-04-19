@@ -111,6 +111,11 @@ class User implements UserInterface, \Serializable
      */
     private $collection;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="Target")
+     */
+    private $userComment;
+
 
 
 
@@ -123,6 +128,7 @@ class User implements UserInterface, \Serializable
         $this->title = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->collection = new ArrayCollection();
+        $this->userComment = new ArrayCollection();
     }
 
 
@@ -528,5 +534,36 @@ class User implements UserInterface, \Serializable
             $this->presentation,
             $this->password
         ) = unserialize($serialized);
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getUserComment(): Collection
+    {
+        return $this->userComment;
+    }
+
+    public function addUserComment(Comment $userComment): self
+    {
+        if (!$this->userComment->contains($userComment)) {
+            $this->userComment[] = $userComment;
+            $userComment->setTarget($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserComment(Comment $userComment): self
+    {
+        if ($this->userComment->contains($userComment)) {
+            $this->userComment->removeElement($userComment);
+            // set the owning side to null (unless already changed)
+            if ($userComment->getTarget() === $this) {
+                $userComment->setTarget(null);
+            }
+        }
+
+        return $this;
     }
 }

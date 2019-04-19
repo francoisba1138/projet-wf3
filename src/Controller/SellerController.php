@@ -50,13 +50,16 @@ class SellerController extends AbstractController
 
         $ads = $seller->getSellerAds();
 
+        $comments = $seller->getUserComment();
+
         if ($role=='ROLE_SELLER') {
 
 
             return $this->render('seller/profile.html.twig',
                 [
                     'seller' => $seller,
-                    'ads' => $ads
+                    'ads' => $ads,
+                    'comments' => $comments
                 ]
             );
 
