@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  *
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -106,6 +106,16 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Game", inversedBy="users")
+     */
+    private $collection;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="Target")
+     */
+    private $userComment;
+
 
 
 
@@ -117,6 +127,8 @@ class User implements UserInterface
         $this->buyerAds = new ArrayCollection();
         $this->title = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->collection = new ArrayCollection();
+        $this->userComment = new ArrayCollection();
     }
 
 
@@ -453,5 +465,105 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return Collection|Game[]
+     */
+    public function getCollection(): Collection
+    {
+        return $this->collection;
+    }
+
+    public function addCollection(Game $collection): self
+    {
+        if (!$this->collection->contains($collection)) {
+            $this->collection[] = $collection;
+        }
+
+        return $this;
+    }
+
+    public function removeCollection(Game $collection): self
+    {
+        if ($this->collection->contains($collection)) {
+            $this->collection->removeElement($collection);
+        }
+
+        return $this;
+    }
+
+    /**
+     * String representation of object
+     * @link https://php.net/manual/en/serializable.serialize.php
+     * @return string the string representation of the object or null
+     * @since 5.1.0
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->firstname,
+            $this->lastname,
+            $this->email,
+            $this->address,
+            $this->presentation,
+            $this->password
+
+
+        ));
+    }
+
+    /**
+     * Constructs the object
+     * @link https://php.net/manual/en/serializable.unserialize.php
+     * @param string $serialized <p>
+     * The string representation of the object.
+     * </p>
+     * @return void
+     * @since 5.1.0
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->firstname,
+            $this->lastname,
+            $this->email,
+            $this->address,
+            $this->presentation,
+            $this->password
+        ) = unserialize($serialized);
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getUserComment(): Collection
+    {
+        return $this->userComment;
+    }
+
+    public function addUserComment(Comment $userComment): self
+    {
+        if (!$this->userComment->contains($userComment)) {
+            $this->userComment[] = $userComment;
+            $userComment->setTarget($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserComment(Comment $userComment): self
+    {
+        if ($this->userComment->contains($userComment)) {
+            $this->userComment->removeElement($userComment);
+            // set the owning side to null (unless already changed)
+            if ($userComment->getTarget() === $this) {
+                $userComment->setTarget(null);
+            }
+        }
+
+        return $this;
     }
 }

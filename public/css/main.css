@@ -1,21 +1,39 @@
 body {
-    background:  url(https://i.pinimg.com/originals/29/55/e2/2955e2567f366d2890da3caaf9fde13b.gif) no-repeat center center fixed;
-    background-size: cover;
+    background-repeat: repeat;
+    background-image: url(../img/background.gif);
+    background-attachment: fixed;
+    background-size: initial;
+
+
+
+}
+
+.bg-custom{
+    background: rgba(255, 255, 255, .5);
+
+}
+
+body, html, main{
     height: 100%;
 }
-#front {
+
+
+.bg-navbar{
+
+    background: rgb(0, 0, 139);
+}
+
+.titre {
     font-family: 'Press Start 2P', cursive;
 }
-
-.table-user-information > tbody > tr {
-    border-top: 1px solid rgb(221, 221, 221);
+.texte{
+    font-family: 'VT323', monospace;
+    font-size: 25px;
 }
 
-.table-user-information > tbody > tr:first-child {
-    border-top: 0;
+.image-small {
+
+    height: 50px;
+
 }
 
-
-.table-user-information > tbody > tr > td {
-    border-top: 0;
-}

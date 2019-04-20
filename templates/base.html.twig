@@ -2,13 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Games{% endblock %}</title>
+        <title>{% block title %}{% endblock %} - Games</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('lib/bootstrap/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/front.css') }}">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-            <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|VT323" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
@@ -39,18 +38,14 @@
 
 
     <!-- Menu Utilisateurs -->
-    <nav id="front" class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-navbar titre">
         <div class="container">
-        <a class="navbar-brand" href="#">Games</a>
+        <a class="navbar-brand" href="{{ path('app_index_index') }}">Games</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('app_index_index') }}">Accueil <span class="sr-only">(current)</span></a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_seller_index') }}">Vendeurs</a>
                 </li>
@@ -62,7 +57,7 @@
                     <a class="nav-link" href="{{ path('app_game_index') }}">Jeux</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{{ path('app_index_contact') }}">Contact</a>
                 </li>
                 </ul>
             <ul class=" ml-auto navbar-nav">
@@ -85,7 +80,7 @@
                         {% if is_granted('ROLE_SELLER') %}
                             <a class="dropdown-item" href="{{ path('app_seller_detail', {'id': app.user.id }) }}">Mon Profil</a>
                         {% endif %}
-                        <a class="dropdown-item" href="{{ path('app_ad_index') }}">Mes Annonces</a>
+                        <a class="dropdown-item" href="{{ path('app_ad_index', {'id': app.user.id }) }}">Mes Annonces</a>
                         <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
                         {% endif %}
                     </div>
@@ -97,7 +92,7 @@
 
     <!-- / Menu Utilisateurs -->
 
-    <div class="container">
+    <main class="container bg-custom">
 
         {# affichage des messages flash #}
         {% for type, messages in app.session.flashBag.all %}
@@ -117,7 +112,14 @@
 
 
     {% block body %}{% endblock %}
-    </div>
+    </main>
+
+
+    {% block footer %}
+
+
+
+    {% endblock %}
 
         {% block javascripts %}
             <script

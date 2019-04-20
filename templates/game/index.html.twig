@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Liste des jeux{% endblock %}
 {% block body %}
 
 
-<table id="front" class="table table-info table-bordered">
-    <thead class="font-weight-bolder text-danger">
+<table class="table table-info table-bordered ">
+    <thead class="font-weight-bolder text-danger titre">
     <tr>
         <th scope="col">Nom du jeu</th>
         <th scope="col">Platforme</th>
         <th scope="col">Date de Sortie</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="texte">
     {% for game in games %}
     <tr>
         <td>
