@@ -53,6 +53,9 @@ class GameController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $originalImage = null;
 
+$date=$game->getDate();
+
+
 
 
 
@@ -123,6 +126,7 @@ class GameController extends AbstractController
 
                     'form' => $form->createView(),
                     'original_image' => $originalImage
+
 
                 ]
             );

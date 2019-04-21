@@ -95,13 +95,8 @@ class BuyerController extends AbstractController
             }
 
 
-
-
-
             $form = $this->createForm(BuyereditType::class, $buyer );
             $form->handleRequest($request);
-
-
 
 
             if( $form->isSubmitted()){
