@@ -3,13 +3,20 @@
 {% block body %}
     {{ dump(response) }}
 
-    {% for game in response %}
-        {{ game.name }} - {{ game.slug }}<br>
+    <ul>
 
-{% for platform in game.platforms %}
-        {{ platform}}<br>
-{% endfor %}
+    {% for game in response %}
+
+<li>
+        <a href="{{ path('app_api_gamedetails', {'id': game.id }) }}" class="">{{ game.name }} ( {{ game.first_release_date|date('Y')}} )</a>
+</li>
+
+
+
+
 
     {% endfor %}
+
+    </ul>
 
 {% endblock %}
