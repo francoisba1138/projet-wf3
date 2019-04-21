@@ -74,8 +74,6 @@ class BuyerController extends AbstractController
 
 
 
-
-
             $form = $this->createForm(BuyeradminType::class, $buyer );
             $form->handleRequest($request);
 
@@ -134,7 +132,8 @@ class BuyerController extends AbstractController
                 [
 
                     'form' => $form->createView(),
-                    'original_image' => $originalImage
+                    'original_image' => $originalImage,
+                    'buyer' => $buyer
 
                 ]
             );

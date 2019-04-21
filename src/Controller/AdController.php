@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Ad;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -14,10 +16,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/{id}", requirements={"id": "\d+"})
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->render('ad/index.html.twig');
+        $repository = $this->getDoctrine()->getRepository(Ad::class);
+        $ad = $repository->findBy([],['date' => 'DESC']);
+
+        return $this->render(
+            'ad/index.html.twig',
+            [
+                'ad' => $ad
+            ]
+        );
     }
 }
