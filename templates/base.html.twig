@@ -8,9 +8,9 @@
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
             <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|VT323" rel="stylesheet">
-        {% endblock %}
+            {% endblock %}
     </head>
-    <body>
+    <body class="">
 
     <!-- Menu Admin -->
    {% if is_granted('ROLE_ADMIN') %}
@@ -91,8 +91,8 @@
     </nav>
 
     <!-- / Menu Utilisateurs -->
-
-    <main class="container bg-custom">
+    <!-- Contenu principal -->
+    <main class="maincontainer container bg-custom p-3">
 
         {# affichage des messages flash #}
         {% for type, messages in app.session.flashBag.all %}
@@ -112,12 +112,15 @@
 
 
     {% block body %}{% endblock %}
-    </main>
 
+
+    </main>
+    <!-- / Contenu principal -->
 
     {% block footer %}
-
-
+        <div class="bg-navbar text-light p-3">
+        &copy; {{ "now"|date("Y") }} Games - Tous droits réservés
+        </div>
 
     {% endblock %}
 
@@ -130,6 +133,7 @@
             <script src="{{ asset('lib/bootstrap/bootstrap.min.js') }}" ></script>
             <script src="{{ asset('js/main.js') }}" ></script>
         {% endblock %}
+
 
 
 </body>

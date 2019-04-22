@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Contact</h1>
 
+
+
+    <div class="col-md-8 col-lg-6 mx-auto bg-light p-md-3" >
+        <h1>Contact</h1>
     {{ form_start(form) }}
     {{ form_row(form.firstname) }}
     {{ form_row(form.lastname) }}
@@ -15,6 +18,6 @@
             </button>
         </div>
     {{ form_end(form) }}
-
+    </div>
 {% endblock %}
 

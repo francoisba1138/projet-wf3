@@ -3,19 +3,30 @@ body {
     background-image: url(../img/background.gif);
     background-attachment: fixed;
     background-size: initial;
-
-
-
 }
+
+
+/*hauteur minimale et positionnement du footer*/
+.maincontainer{
+    min-height: calc(100vh - 112px);
+    /* 112 px = hauteur cumulée du footer et de la navbar*/
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
+
 
 .bg-custom{
     background: rgba(255, 255, 255, .5);
 
 }
 
-body, html, main{
-    height: 100%;
-}
 
 
 .bg-navbar{
@@ -24,7 +35,7 @@ body, html, main{
 }
 
 .titre {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', monospace;
 }
 .texte{
     font-family: 'VT323', monospace;
