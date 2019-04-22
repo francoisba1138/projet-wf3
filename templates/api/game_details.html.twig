@@ -10,7 +10,14 @@
         <img class="img-fluid col-sm m-auto" src="{{ game.cover_url }}" alt="{{ game.slug }}">
         </div>
         <div class="col-md-8">
-            <p class="h3">{{ game.first_release_date|date('Y')}}</p>
+            <p class="h2">Année : <span class="h4">
+            {%  if game.first_release_date != "-2208988800" %}
+            {{ game.first_release_date|date('Y')}}
+                {% else %}
+                    inconnue
+            {% endif %}
+                </span></p>
+
             <h2>Plateformes :</h2>
             <p>
             {% for platform in game.platform_names %}

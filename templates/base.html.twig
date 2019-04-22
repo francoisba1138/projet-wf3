@@ -15,7 +15,7 @@
     <!-- Menu Admin -->
    {% if is_granted('ROLE_ADMIN') %}
     <ul class="nav bg-warning justify-content-center">
-        <i class="nav-item fas fa-tools"></i>
+
         <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_buyer_index') }}">Membres</a>
         </li>
@@ -31,7 +31,7 @@
         <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_game_index') }}">Jeux</a>
         </li>
-        <i class="nav-item fas fa-tools"></i>
+
     </ul>
    {%  endif %}
     <!-- /Menu Admin -->
@@ -73,7 +73,7 @@
                     <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ app.user }}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu navbar-dark bg-navbar" aria-labelledby="navbarDropdownMenuLink">
                         {% if is_granted('ROLE_BUYER') %}
                             <a class="dropdown-item" href="{{ path('app_buyer_detail', {'id': app.user.id }) }}">Mon Profil</a>
                         {% endif %}

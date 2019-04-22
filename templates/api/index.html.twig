@@ -8,7 +8,9 @@
     {% for game in response %}
 
 <li>
-        <a href="{{ path('app_api_gamedetails', {'id': game.id }) }}" class="">{{ game.name }} ( {{ game.first_release_date|date('Y')}} )</a>
+        <a href="{{ path('app_api_gamedetails', {'id': game.id }) }}" class="">{{ game.name }}
+
+        </a>
 </li>
 
 
@@ -18,5 +20,14 @@
     {% endfor %}
 
     </ul>
+    {{ page }} {{ request }}
+
+
+    <a href="{{ path('app_api_games', {'name': request, 'scroll': page-1 }) }}"> << page précedente{{ request }}</a>
+
+    <a href="{{ path('app_api_games', {'name': request, 'scroll': page+1 }) }}">page suivante>>{{ request }}</a>
+
+
 
 {% endblock %}
+

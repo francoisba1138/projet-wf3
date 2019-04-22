@@ -1,6 +1,6 @@
 body {
     background-repeat: repeat;
-    background-image: url(../img/background.gif);
+    background-image: url(../img/background-3.gif);
     background-attachment: fixed;
     background-size: initial;
 }
@@ -23,7 +23,7 @@ footer{
 
 
 .bg-custom{
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .8);
 
 }
 
