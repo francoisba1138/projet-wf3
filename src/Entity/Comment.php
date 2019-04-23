@@ -27,16 +27,22 @@ class Comment
      */
     private $content;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $subject;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userComment")
+     */
+    private $Target;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Game", inversedBy="comments")
+     */
+    private $Game;
 
 
 
@@ -81,20 +87,34 @@ class Comment
         return $this;
     }
 
-    public function getSubject(): ?string
-    {
-        return $this->subject;
-    }
 
-    public function setSubject(string $subject): self
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
 
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getTarget(): ?User
+    {
+        return $this->Target;
+    }
+
+    public function setTarget(?User $Target): self
+    {
+        $this->Target = $Target;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->Game;
+    }
+
+    public function setGame(?Game $Game): self
+    {
+        $this->Game = $Game;
+
+        return $this;
     }
 }

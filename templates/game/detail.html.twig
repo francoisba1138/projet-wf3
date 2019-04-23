@@ -22,7 +22,46 @@
     {% else %}
         <p><strong>{{ game }}</strong> ne figure dans aucune collection </p>
     {% endfor %}
+
+
+
+
+
+    {# Affichage des Commentaires #}
+
+
+
+    <h2>Commentaires</h2>
+
+    <div class="row">
+
+        {%  for comment in comments %}
+
+            <div class="card col-lg-12">
+                <div class="card-header">
+                    {{ comment.title }}
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{ comment.content }}</p>
+                        <footer class="blockquote-footer">{{ comment.author }} <img class="image-small" src="{{ asset('/img/profile/' ~ comment.author.image ) }}" alt=""></footer>
+                    </blockquote>
+                </div>
+            </div>
+
+        {% else %}
+            Pas de commentaires
+
+        {% endfor %}
+
+    </div>
+
+
+
+
+
+
+
         </div>
     </div>
 {% endblock %}
-

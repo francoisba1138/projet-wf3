@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03fdda667a539ad5ab66bee51f94748d",
+    "content-hash": "2b081cea2a4349b40726157ad7f18bc7",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1251,6 +1251,50 @@
                 "validator"
             ],
             "time": "2018-12-04T22:38:24+00:00"
+        },
+        {
+            "name": "emanuilnikolov/igdb-api-bundle",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EmanuelNikolov/IgdbApiBundle.git",
+                "reference": "d18e7fe2df96aae6487903b262cba77feab0b92d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EmanuelNikolov/IgdbApiBundle/zipball/d18e7fe2df96aae6487903b262cba77feab0b92d",
+                "reference": "d18e7fe2df96aae6487903b262cba77feab0b92d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.3",
+                "php": "^7.1.3",
+                "symfony/config": "^3.4|^4.0",
+                "symfony/dependency-injection": "^3.4|^4.0",
+                "symfony/http-kernel": "^3.4|^4.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^4.2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "EN\\IgdbApiBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuel Nikolov",
+                    "email": "enikolov.intl@gmail.com"
+                }
+            ],
+            "description": "Symfony Wrapper for IGDB.com API.",
+            "time": "2018-12-02T12:09:42+00:00"
         },
         {
             "name": "fig/link-util",

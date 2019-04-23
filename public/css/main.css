@@ -1,17 +1,46 @@
 body {
-    background-position: center;
-    background-image: url('../img/background.gif');
+    background-repeat: repeat;
+    background-image: url(../img/background-3.gif);
     background-attachment: fixed;
-    height: 100%;
+    background-size: initial;
 }
+
+
+/*hauteur minimale et positionnement du footer*/
+.maincontainer{
+    min-height: calc(100vh - 112px);
+    /* 112 px = hauteur cumulée du footer et de la navbar*/
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
+
+
+.bg-custom{
+    background: rgba(255, 255, 255, .8);
+
+}
+
+
+
+.bg-navbar{
+
+    background: rgb(222, 89, 25);
+}
+
 .titre {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', monospace;
 }
 .texte{
     font-family: 'VT323', monospace;
     font-size: 25px;
 }
-.bg-custom{
-    background: rgba(255, 255, 255,.5);
-
+.image-small {
+    height: 50px;
 }

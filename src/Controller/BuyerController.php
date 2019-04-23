@@ -53,8 +53,11 @@ class BuyerController extends AbstractController
     {
         $role= $buyer->getRole();
         $collection= $buyer->getCollection();
+        $comments= $buyer->getUserComment();
 
         dump($collection);
+        dump($comments);
+
 
         if ($role=='ROLE_BUYER') {
 
@@ -62,7 +65,8 @@ class BuyerController extends AbstractController
         return $this->render('buyer/profile.html.twig',
             [
                 'buyer' => $buyer,
-                'collection' => $collection
+                'collection' => $collection,
+                'comments' => $comments,
 
             ]
         );
@@ -145,8 +149,8 @@ class BuyerController extends AbstractController
 
                     $em->persist($buyer);
                     $em->flush();
-                    $this->addFlash('success', "Le membre est enregistré");
-                    return $this->redirectToRoute('app_buyer_index');
+                    $this->addFlash('success', "Vos informations sont bien enregistrées");
+                    return $this->redirectToRoute('app_buyer_detail',['id'=> $buyer->getId()]);
 
                 }else {
                     $this->addFlash('error', 'Le formulaire contient des erreurs');

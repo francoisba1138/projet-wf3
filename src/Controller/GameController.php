@@ -35,12 +35,14 @@ class GameController extends AbstractController
     {
 
 $users=$game->getUsers();
+$comments=$game->getComments();
 
         return $this->render(
             'game/detail.html.twig',
             [
                 'game' => $game,
-                'users' => $users
+                'users' => $users,
+                'comments' => $comments
 
             ]
         );

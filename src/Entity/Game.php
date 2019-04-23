@@ -53,10 +53,16 @@ class Game
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="Game")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->ads = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,6 +183,37 @@ class Game
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             $user->removeCollection($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getGame() === $this) {
+                $comment->setGame(null);
+            }
         }
 
         return $this;

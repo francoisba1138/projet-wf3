@@ -1,8 +1,9 @@
 {% extends'base.html.twig' %}
 {% block title %}Connexion{% endblock %}
 {% block body %}
+    <div class="col-md-8 col-lg-6 mx-auto bg-light p-3" >
     <h1>Inscription</h1>
-<div class=container">
+
     <td>{{ form_start(form) }}</td>
     <td>{{ form_row(form.role) }}</td>
     <td>{{ form_row(form.image) }}</td>

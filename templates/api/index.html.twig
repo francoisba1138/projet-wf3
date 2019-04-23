@@ -3,10 +3,31 @@
 {% block body %}
     {{ dump(response) }}
 
+    <ul>
+
     {% for game in response %}
-        {{ game.name }}<br>
-        {{ game.slug }}<br>
-        {{ game.cover }}<br>
+
+<li>
+        <a href="{{ path('app_api_gamedetails', {'id': game.id }) }}" class="">{{ game.name }}
+
+        </a>
+</li>
+
+
+
+
+
     {% endfor %}
 
+    </ul>
+    {{ page }} {{ request }}
+
+
+    <a href="{{ path('app_api_games', {'name': request, 'scroll': page-1 }) }}"> << page précedente{{ request }}</a>
+
+    <a href="{{ path('app_api_games', {'name': request, 'scroll': page+1 }) }}">page suivante>>{{ request }}</a>
+
+
+
 {% endblock %}
+
