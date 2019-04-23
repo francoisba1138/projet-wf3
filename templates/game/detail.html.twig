@@ -17,19 +17,14 @@
         <div class="row col-10 mx-auto pt-5">
     <h2 class="titre">Collections</h2>
     {% for user in users %}
-        <p><strong>{{ game }}</strong> apparaît dans la collection de : </p>
+        <p><strong>{{ game }}</strong>apparaît dans la collection de : </p>
         <p><a href="{{ path('app_buyer_detail', {'id': user.id}) }}">{{ user }} </a></p>
     {% else %}
         <p><strong>{{ game }}</strong> ne figure dans aucune collection </p>
     {% endfor %}
 
 
-
-
-
     {# Affichage des Commentaires #}
-
-
 
     <h2>Commentaires</h2>
 

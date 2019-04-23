@@ -5,7 +5,6 @@ body {
     background-size: initial;
 }
 
-
 /*hauteur minimale et positionnement du footer*/
 .maincontainer{
     min-height: calc(100vh - 112px);
@@ -17,17 +16,10 @@ footer{
     bottom: 0;
 }
 
-
-
-
-
-
 .bg-custom{
     background: rgba(255, 255, 255, .8);
 
 }
-
-
 
 .bg-navbar{
 
@@ -41,6 +33,26 @@ footer{
     font-family: 'VT323', monospace;
     font-size: 25px;
 }
+
 .image-small {
     height: 50px;
+}
+.bandeau1{
+    border-radius: 5px;
+}
+.bandeau2 {
+    border-radius: 5px;
+    font-size: 120%;
+    background-size: initial;
+    background-image: url(../img/bandeaux/bandeau2.jpg);
+}
+.bandeau2 .bg-light{
+    border-radius: 5px;
+}
+
+.bandeau3 {
+    border-radius: 5px;
+    font-size: 120%;
+    background-size: initial;
+    background-image: url(../img/bandeaux/bandeau3.jpg);
 }
