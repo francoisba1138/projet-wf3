@@ -2,9 +2,9 @@
 
 
 namespace App\Controller\Admin;
-use App\Entity\User;
-use App\Form\AdType;
-use App\Form\BuyeradminType;
+
+use App\Form\AdadminType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Ad;
 
@@ -54,7 +54,7 @@ class AdController extends AbstractController
     {
 
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(AdType::class, $ad );
+        $form = $this->createForm(AdadminType::class, $ad );
         $form->handleRequest($request);
 
         if( $form->isSubmitted()){
@@ -65,7 +65,7 @@ class AdController extends AbstractController
          $em->persist($ad);
                     $em->flush();
                     $this->addFlash('success', "L'annonce est enregistré");
-                    return $this->redirectToRoute('app_admin_buyer_index');
+                    return $this->redirectToRoute('app_admin_ad_index');
 
                 }else {
                     $this->addFlash('error', 'Le formulaire contient des erreurs');
