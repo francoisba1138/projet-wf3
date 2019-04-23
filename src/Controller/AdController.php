@@ -43,6 +43,16 @@ class AdController extends AbstractController
     /**
      * @Route("/ajout")
      */
+    public function add()
+    {
+        return $this->render(
+            'ad/add.html.twig'
+        );
+    }
+
+    /**
+     * @Route("/detail")
+     */
     public function detail()
     {
         return $this->render(
