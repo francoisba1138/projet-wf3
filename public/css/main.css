@@ -11,10 +11,6 @@ body {
     /* 112 px = hauteur cumulée du footer et de la navbar*/
 }
 
-footer{
-    position: absolute;
-    bottom: 0;
-}
 
 .bg-custom{
     background: rgba(255, 255, 255, .8);

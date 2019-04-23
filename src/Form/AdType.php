@@ -23,7 +23,7 @@ class AdType extends AbstractType
                 DateType::class,
                 [
                     'label' => 'Date',
-                    // pour que la date s'affiche en texte
+                    // pour afficher un "date picker" géré par le navigateur (HTML5)
                     'widget' => 'single_text'
                 ]
             )

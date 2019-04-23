@@ -5,7 +5,7 @@
 
 
 
-    <div class="bg-custom p-2 mb-5">
+    <div class="bg-custom p-4 mb-5">
         <h1 class="titre h3">{{ game.title }}</h1>
 
 
@@ -29,13 +29,13 @@
     </div>
 
 
-<div class="bg-custom p-2 mb-5">
+<div class="bg-custom p-4 mb-5">
 
 
         <h2 class="titre h4">Collections</h2>
+    <p><strong>{{ game }}</strong> apparaît dans la collection de : </p>
 
         {% for user in users %}
-            <p><strong>{{ game }}</strong> apparaît dans la collection de : </p>
             <p><a href="{{ path('app_buyer_detail', {'id': user.id}) }}">{{ user }} </a></p>
         {% else %}
             <p><strong>{{ game }}</strong> ne figure dans aucune collection </p>
@@ -46,27 +46,27 @@
 
 
     {# Affichage des Commentaires #}
-<div class="bg-custom p-2 mb-5">
+<div class="bg-custom p-4 mb-5">
     <h2 class="titre h4">Commentaires</h2>
 
     <div class="row">
 
         {%  for comment in comments %}
 
-            <div class="card col-lg-12">
+            <div class="card">
                 <div class="card-header">
                     {{ comment.title }}
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p>{{ comment.content }}</p>
-                        <footer class="blockquote-footer">{{ comment.author }} <img class="image-small" src="{{ asset('/img/profile/' ~ comment.author.image ) }}" alt=""></footer>
+                        <footer class="blockquote-footer">{{ comment.author }} <img class="image-small img-thumbnail" src="{{ asset('/img/profile/' ~ comment.author.image ) }}" alt=""></footer>
                     </blockquote>
                 </div>
             </div>
 
         {% else %}
-            Pas de commentaires
+            <p>Pas de commentaires</p>
 
         {% endfor %}
 
