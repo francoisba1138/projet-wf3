@@ -2,5 +2,90 @@
 {% block title %}Gestion des commentaires{% endblock %}
 
 {% block body %}
-    <h1>Gestion Commentaires</h1>
+    <h1>Gestion Commentaires</h1><table class="m-auto table table-responsive-md bg-light table-striped">
+    <tr>
+        <th >ID</th>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Destinataire</th>
+        <th>Jeu</th>
+
+        <th></th>
+
+
+    </tr>
+
+
+    {%  for comment in comments %}
+
+
+    <tr>
+        <td>{{ comment.id }}</td>
+        <td>{{ comment.title }}</td>
+        <td>{{ comment.author }}</td>
+        <td>{{ comment.target }}</td>
+        <td>{{ comment.game }}</td>
+
+
+
+        <td><a href="{{ path('app_admin_comment_detail', {'id': comment.id }) }}" class="btn btn-outline-primary btn-sm mb-3"><i class="fas fa-pencil-alt"></i></a>
+
+            <a href="{{ path('app_admin_comment_delete', {'id': comment.id }) }}" class="btn btn-outline-danger btn-delete btn-sm mb-3"><i class="fas fa-trash"></i></a>
+
+            <a href="{{ path('app_admin_comment_ajaxcontent', {'id': comment.id }) }}" class="btn btn-outline-secondary btn-user-content btn-sm mb-3"><i class="fas fa-eye"></i></a></td>
+
+
+
+        {% endfor %}
+
+</table>
+    {# Modale suppression #}
+    <div class="modal" tabindex="-1" role="dialog" id="modal-confirm-delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Etes-vous sûr.e de vouloir supprimer cette annonce</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary btn-confirm-delete">Oui</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {# Modale aperçu du membre #}
+    <div class="modal" tabindex="-1" role="dialog" id="modal-user-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aperçu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script src="{{ asset('js/admin_user.js') }}"></script>
+
 {% endblock %}
