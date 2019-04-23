@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ad;
 use App\Entity\User;
 use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,11 +24,27 @@ class IndexController extends AbstractController
             5
         );
 
+        $sellers =$repository->findBy(
+            ['role' => 'ROLE_SELLER'],
+            ['id' => 'DESC'],
+            5
+        );
+
+        $adrepository = $this->getDoctrine()->getRepository(Ad::class);
+
+        $ads =$adrepository->findBy(
+            [],
+            ['id' => 'DESC'],
+            5
+        );
+
         return $this->render('index/index.html.twig',
-            [
-                'buyers' => $buyers
-            ]
-            );
+        [
+            'buyers' => $buyers,
+            'sellers' => $sellers,
+            'ads' => $ads
+        ]
+    );
     }
 
 

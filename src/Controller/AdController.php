@@ -21,7 +21,10 @@ class AdController extends AbstractController
     public function index(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository(Ad::class);
-        $ad = $repository->findBy([],['date' => 'DESC']);
+        $ad = $repository->findBy(
+            [],
+            ['date' => 'DESC']
+        );
 
         return $this->render(
             'ad/index.html.twig',
