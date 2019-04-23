@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Form\AdType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,12 +44,33 @@ class AdController extends AbstractController
     /**
      * @Route("/ajout")
      */
-    public function add()
+    public function add(Ad $ad, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(AdType::class, $ad);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            if($form->isValid()){
+                $em->persist($ad);
+                    $em->flush();
+                    $this->addFlash('success', "L'annonce est enregistré");
+                    return $this->redirectToRoute('app_ad_index');
+            }else{
+                $this->addFlash('error', 'Le formulaire contient des erreurs');
+            }
+        }
+
         return $this->render(
-            'ad/add.html.twig'
+            'ad/add.html.twig',
+            [
+                'form' => $form->createView(),
+                'ad' => $ad
+            ]
         );
     }
+
+
 
     /**
      * @Route("/detail")
