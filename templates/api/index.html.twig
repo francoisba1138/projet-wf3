@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(response) }}
-
     <ul>
 
     {% for game in response %}
@@ -13,21 +11,20 @@
         </a>
 </li>
 
-
-
-
-
     {% endfor %}
 
     </ul>
-    {{ page }} {{ request }}
 
 
-    <a href="{{ path('app_api_games', {'name': request, 'scroll': page-1 }) }}"> << page précedente{{ request }}</a>
+    {% if page > 0 and page < count/50 %}
+    <a href="{{ path('app_api_games', {'name': request, 'scroll': page-1 }) }}"> << page précedente</a>
+    {% endif %}
 
-    <a href="{{ path('app_api_games', {'name': request, 'scroll': page+1 }) }}">page suivante>>{{ request }}</a>
+
+    {% if page+2 <count/50 %}
+    <a href="{{ path('app_api_games', {'name': request, 'scroll': page+1 }) }}">page suivante>></a>
+    {% endif %}
 
 
-
-{% endblock %}
+    {% endblock %}
 

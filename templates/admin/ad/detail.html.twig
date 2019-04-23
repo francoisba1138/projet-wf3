@@ -5,8 +5,16 @@
 
 
     {{ form_start(form) }}
-
-
+    {{ form_row(form.date) }}
+    {{ form_row(form.title) }}
+    {{ form_label(form.seller, 'Vendeur') }}
+    {{ form_widget(form.seller) }}
+    {{ form_row(form.game) }}
+    {{ form_row(form.cond) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.buyer) }}
+    {{ form_row(form.status) }}
+    {{ form_row(form.content) }}
 
     <input type="submit" value="Modifier" class="btn btn-outline-primary mb-3">
     {{ form_end(form) }}
