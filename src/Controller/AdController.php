@@ -18,7 +18,7 @@ class AdController extends AbstractController
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
      */
-    public function index(Request $request)
+    public function index()
     {
         if ($this->getUser()->getRole()=='ROLE_SELLER'){
 
@@ -37,6 +37,16 @@ class AdController extends AbstractController
             [
                 'ads' => $ads
             ]
+        );
+    }
+
+    /**
+     * @Route("/ajout")
+     */
+    public function detail()
+    {
+        return $this->render(
+            'ad/detail.html.twig'
         );
     }
 }
