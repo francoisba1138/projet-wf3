@@ -1,34 +1,23 @@
 {% extends 'base.html.twig' %}
 {% block title %}Profil de {{ seller }}{% endblock %}
 {% block body %}
-
-
-    {{ seller}} - {{ seller.shopName}}<br>
-
-    {{ seller.address}}<br>
-            {{ seller.presentation}}<br>
-        {%  if seller.image %}
+    {{ seller}} - {{ seller.shopName}}
+    {{ seller.address}}
+    {{ seller.presentation}}
+    {%  if seller.image %}
         <img src="{{ asset('/img/profile/' ~ seller.image) }}" height="200px">
-        {% endif %}
-
-
+    {% endif %}
     <h2>Les annonces de {{ seller }}</h2>
-
     {%  for ad in ads %}
-
-        <p>{{ ad.date|date("d/m/Y") }} - <a href="" class=""><strong>{{ ad.title }}</strong></a> - <a href="{{ path('app_game_detail', {'id': ad.game.id}) }}">{{ ad.game }}</a> - {{ ad.status }}
-
+        <p>{{ ad.date|date("d/m/Y") }} - <a href="" class=""><strong>{{ ad.title }}</strong></a> -
+            <a href="{{ path('app_game_detail', {'id': ad.game.id}) }}">{{ ad.game }}</a> - {{ ad.status }}
             {% if ad.buyer is not null %}
                 (<a
                     href="{{ path('app_buyer_detail', {'id': ad.buyer.id}) }}">{{ ad.buyer }}</a>)
             {% endif %}
-
         </p>
-
     {% else %}
-
         <p>{{ seller }} n'a pas d'annonces en cours</p>
-
     {% endfor %}
 
 
@@ -36,15 +25,9 @@
 
 
     {# Affichage des Commentaires #}
-
-
-
-            <h2>Commentaires</h2>
-
+        <h2>Commentaires</h2>
         <div class="row">
-
             {%  for comment in comments %}
-
             <div class="card col-lg-12">
                 <div class="card-header">
                     {{ comment.title }}
@@ -56,12 +39,9 @@
                     </blockquote>
                 </div>
             </div>
-
             {% else %}
-                Pas de commentaires
-
+               <p>{{ seller }} n'a pas encore écrit de commentaires</p>
             {% endfor %}
-
         </div>
 
 {% endblock %}
