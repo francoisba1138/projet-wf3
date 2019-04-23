@@ -10,12 +10,11 @@
             <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|VT323" rel="stylesheet">
             {% endblock %}
     </head>
-    <body class="">
+    <body>
 
     <!-- Menu Admin -->
    {% if is_granted('ROLE_ADMIN') %}
     <ul class="nav bg-warning justify-content-center">
-
         <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_buyer_index') }}">Membres</a>
         </li>
@@ -31,7 +30,6 @@
         <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_game_index') }}">Jeux</a>
         </li>
-
     </ul>
    {%  endif %}
     <!-- /Menu Admin -->
@@ -80,8 +78,8 @@
                         {% if is_granted('ROLE_SELLER') %}
                             <a class="dropdown-item" href="{{ path('app_seller_detail', {'id': app.user.id }) }}">Mon Profil</a>
                         {% endif %}
-                        <a class="dropdown-item" href="{{ path('app_ad_index', {'id': app.user.id }) }}">Mes Annonces</a>
-                        <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
+                            <a class="dropdown-item" href="{{ path('app_ad_index', {'id': app.user.id }) }}">Mes Annonces</a>
+                            <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
                         {% endif %}
                     </div>
                 </li>
@@ -92,7 +90,7 @@
 
     <!-- / Menu Utilisateurs -->
     <!-- Contenu principal -->
-    <main class="maincontainer container bg-custom p-3">
+    <main class="maincontainer justify-content-center container bg-custom p-3 mx-auto">
 
         {# affichage des messages flash #}
         {% for type, messages in app.session.flashBag.all %}
@@ -133,8 +131,6 @@
             <script src="{{ asset('lib/bootstrap/bootstrap.min.js') }}" ></script>
             <script src="{{ asset('js/main.js') }}" ></script>
         {% endblock %}
-
-
 
 </body>
 </html>

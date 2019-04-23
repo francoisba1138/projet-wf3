@@ -18,13 +18,12 @@
 
         <p>{{ ad.date|date("d/m/Y") }} - <a href="" class=""><strong>{{ ad.title }}</strong></a> - <a href="{{ path('app_game_detail', {'id': ad.game.id}) }}">{{ ad.game }}</a> - {{ ad.status }}
 
-          {% if ad.buyer is not null %}
-           ( <a href="{{ path('app_buyer_detail', {'id': ad.buyer.id}) }}">{{ ad.buyer }}</a>)
+            {% if ad.buyer is not null %}
+                (<a
+                    href="{{ path('app_buyer_detail', {'id': ad.buyer.id}) }}">{{ ad.buyer }}</a>)
             {% endif %}
 
-
-
-            </p>
+        </p>
 
     {% else %}
 
