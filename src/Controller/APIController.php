@@ -16,16 +16,50 @@ class APIController extends AbstractController
 
 
     /**
+     * Recherche dans le nom du jeu
+     *
+     * @Route("/jeu/recherche/{name}/{scroll}", defaults={"scroll"=0})
+     */
+    public function games($name,$scroll)
+
+    {
+        $client = new FileGetContents(new Psr17Factory());
+        $browser = new Browser($client, new Psr17Factory());
+
+        $response = $browser->get(
+            "https://api-v3.igdb.com/games/?fields=id,name&limit=50&offset=". $scroll*50 ."&search=" . $name,
+//?fields=id,name,slug,storyline,summary,screenshots,first_release_date
+            [
+                'user-key' => '128f06a547525a39878205e49b57fa50',
+                "Accept" => "application/json"
+            ]
+        );
+
+
+        $count=$response->getHeader('X-Count')[0];
+
+
+        return $this->render(
+            'api/index.html.twig', [
+            'response' => json_decode($response->getBody()->getContents()),
+            'page' => $scroll,
+            'request' => $name,
+            'count' => $count
+        ]);
+    }
+
+
+
+
+
+    /**
      * id du jeu
-     * @Route("/api/jeu/{id}")
+     * @Route("/jeu/fiche/{id}")
      */
     public function gameDetails($id)
     {
         $client = new FileGetContents(new Psr17Factory());
         $browser = new Browser($client, new Psr17Factory());
-
-
-
 
         $apikey=
             [
@@ -42,13 +76,12 @@ class APIController extends AbstractController
             $apikey
         );
 
+
+
         $game=json_decode($game->getBody()->getContents(), true)[0];
 
 
-
-
         // recuperation des données couverture de jeu par id cover
-
 
         if ( array_key_exists('cover',$game)) {
             $cover = $browser->get(
@@ -86,36 +119,34 @@ class APIController extends AbstractController
                 );
                 $platformName = json_decode($platformName->getBody()->getContents(), true);
 
-                $platformName = $platformName[0]['abbreviation'];
+
+
+                if ( array_key_exists('abbreviation',$platformName[0])) {
+                    $platformName = $platformName[0]['abbreviation'];
+                }else {
+                    $platformName = 'nc';
+                }
 
                 $platformNames[$platform] = $platformName;
-
-
             }
-
         }else {
-
             $platformNames[] = 'nc';
-
         }
-
-
-
 
 
 
 
 // enregistrement des données dans array game
 
-        if ( !array_key_exists('first_release_date',$game)) {
-            $game['first_release_date']='-2208988800';
 
+        if ( !array_key_exists('summary',$game)) {
+
+            $game['summary']="Résumé non disponible";
         }
+
 
     $game['cover_url']="https://images.igdb.com/igdb/image/upload/t_cover_big/" . $coverName . ".jpg";
     $game['platform_names']=$platformNames;
-
-
 
 
 
@@ -125,122 +156,10 @@ class APIController extends AbstractController
         ]);
 
 
-
-
-
-
-    }
-
-
-   /**
-    *
-    *
-     * @Route("/api/search/{name}/{scroll}", defaults={"scroll"=0})
-     */
-    public function games($name,$scroll)
-
-    {
-        $client = new FileGetContents(new Psr17Factory());
-        $browser = new Browser($client, new Psr17Factory());
-
-        $response = $browser->get(
-            "https://api-v3.igdb.com/games/?fields=id,name&limit=50&offset=". $scroll*50 ."&search=" . $name,
-//?fields=id,name,slug,storyline,summary,screenshots,first_release_date
-                [
-                    'user-key' => '128f06a547525a39878205e49b57fa50',
-                    "Accept" => "application/json"
-                ]
-        );
-
-
-        dump($response);
-
-
-
-
-        return $this->render(
-            'api/index.html.twig', [
-            'response' => json_decode($response->getBody()->getContents()),
-                'page' => $scroll,
-            'request' => $name
-        ]);
-    }
-
-    /**
-     * id du jeu (possibilité d'utiliser le slug)
-     * @Route("/api/game/{id}")
-     */
-    public function game($id)
-    {
-        $client = new FileGetContents(new Psr17Factory());
-        $browser = new Browser($client, new Psr17Factory());
-
-        $response = $browser->get(
-            "https://api-v3.igdb.com/games/" . $id ."?fields=*",
-
-            [
-                'user-key' => '128f06a547525a39878205e49b57fa50',
-                "Accept" => "application/json"
-            ]
-        );
-
-
-        return $this->render(
-            'api/game.html.twig', [
-            'response' => json_decode($response->getBody()->getContents())
-        ]);
-    }
-    /**
-     * id de la plateforme
-     * @Route("/api/platform/{id}")
-     */
-    public function platform($id)
-    {
-        $client = new FileGetContents(new Psr17Factory());
-        $browser = new Browser($client, new Psr17Factory());
-
-        $response = $browser->get(
-            "https://api-v3.igdb.com/platforms/" . $id ."?fields=*",
-
-            [
-                'user-key' => '128f06a547525a39878205e49b57fa50',
-                "Accept" => "application/json"
-            ]
-        );
-
-
-        return $this->render(
-            'api/game.html.twig', [
-            'response' => json_decode($response->getBody()->getContents())
-        ]);
     }
 
 
 
-    /**
-     * id de la cover
-     * @Route("/api/cover/{id}")
-     */
-    public function cover($id)
-    {
-        $client = new FileGetContents(new Psr17Factory());
-        $browser = new Browser($client, new Psr17Factory());
-
-        $response = $browser->get(
-            "https://api-v3.igdb.com/covers/" . $id ."?fields=*",
-
-            [
-                'user-key' => '128f06a547525a39878205e49b57fa50',
-                "Accept" => "application/json"
-            ]
-        );
-
-
-        return $this->render(
-            'api/game.html.twig', [
-            'response' => json_decode($response->getBody()->getContents())
-        ]);
-    }
 
 
 

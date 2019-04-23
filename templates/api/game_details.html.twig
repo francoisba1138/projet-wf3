@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(game) }}
+
 
 
     <h1>{{ game.name }}</h1>
@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-8">
             <p class="h2">Année : <span class="h4">
-            {%  if game.first_release_date != "-2208988800" %}
+            {%  if game.first_release_date is defined %}
             {{ game.first_release_date|date('Y')}}
                 {% else %}
                     inconnue
