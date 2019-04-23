@@ -14,7 +14,7 @@
 
     <!-- Menu Admin -->
    {% if is_granted('ROLE_ADMIN') %}
-    <ul class="nav bg-warning justify-content-center">
+    <ul class="nav sticky-top bg-warning justify-content-center">
         <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_buyer_index') }}">Membres</a>
         </li>
@@ -36,7 +36,7 @@
 
 
     <!-- Menu Utilisateurs -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-navbar titre">
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-navbar titre">
         <div class="container">
         <a class="navbar-brand" href="{{ path('app_index_index') }}">Games</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

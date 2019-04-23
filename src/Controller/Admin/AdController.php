@@ -78,8 +78,6 @@ class AdController extends AbstractController
             [
                 'form' => $form->createView(),
                 'ad' => $ad
-
-
             ]
 
             );
