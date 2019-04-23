@@ -2,5 +2,12 @@
 {% block title %}Mes annonces{% endblock %}
 {% block body %}
     <h1>Mes annonces</h1>
+    {% for article in ads %}
+        <tr>
+            <td><a href="#">{{ article.title }}</a></td>
+        </tr>
+    {% endfor %}
 
+    <a class="btn btn-primary" href="">ADD</a>
 {% endblock %}
+

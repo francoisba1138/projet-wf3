@@ -57,8 +57,8 @@ class IndexController extends AbstractController
 
         // pré-remplissage des champs
         if(!is_null($this->getUser())) {
-            $form->get('firstname')->setData($this->getUser());
-            $form->get('lastname')->setData($this->getUser());
+            $form->get('firstname')->setData($this->getUser()->getFirstname());
+            $form->get('lastname')->setData($this->getUser()->getLastname());
             $form->get('email')->setData($this->getUser()->getEmail());
         }
 

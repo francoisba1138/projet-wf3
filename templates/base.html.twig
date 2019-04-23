@@ -78,8 +78,8 @@
                         {% if is_granted('ROLE_SELLER') %}
                             <a class="dropdown-item" href="{{ path('app_seller_detail', {'id': app.user.id }) }}">Mon Profil</a>
                         {% endif %}
-                        <a class="dropdown-item" href="{{ path('app_ad_index', {'id': app.user.id }) }}">Mes Annonces</a>
-                        <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
+                            <a class="dropdown-item" href="{{ path('app_ad_index', {'id': app.user.id }) }}">Mes Annonces</a>
+                            <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
                         {% endif %}
                     </div>
                 </li>
