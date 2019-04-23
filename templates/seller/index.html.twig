@@ -7,12 +7,9 @@
     <h1 class="titre">Liste des vendeurs</h1>
     <ul class="list-group">
         {% for seller in sellers %}
-                <li class="list-group-item bg-custom">
-                    <a class="text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} - {{ seller.shopName }}
-                        {% for ad in ads %}
-                            {{ ad }}
-                        {% endfor %}
-                    </a>
+                <li class="list-group-item bg-custom d-flex justify-content-between">
+                    <a class="texte text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} - {{ seller.shopName }}</a>
+                    <a class=" texte text-dark" href="">{{ ad }} annonces disponibles</a>
                 </li>
         {% endfor %}
     </ul>

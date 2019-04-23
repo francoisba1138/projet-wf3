@@ -33,8 +33,6 @@ class BuyerController extends AbstractController
             ]
         );
 
-
-
         return $this->render('buyer/index.html.twig',
             [
                 'buyers' => $buyers

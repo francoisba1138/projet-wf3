@@ -33,13 +33,13 @@ class SellerController extends AbstractController
 
         $adrepository = $this->getDoctrine()->getRepository(Ad::class);
 
-        $ads =$adrepository->findAll();
+        $ad =$adrepository->findAll();
 
 
         return $this->render('seller/index.html.twig',
             [
             'sellers' => $sellers,
-                'ads' => count($ads)
+                'ad' => count($ad)
             ]
         );
 
