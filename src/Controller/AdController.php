@@ -20,16 +20,22 @@ class AdController extends AbstractController
      */
     public function index()
     {
-        $repository = $this->getDoctrine()->getRepository(Ad::class);
-        $ad = $repository->findBy(
-            [],
-            ['date' => 'DESC']
-        );
+        if ($this->getUser()->getRole()=='ROLE_SELLER'){
+
+            dump($this->getUser()->getRole());
+
+            $repository = $this->getDoctrine()->getRepository(Ad::class);
+            $ads = $repository->findBy(['seller' => $this->getUser()],['date' => 'DESC']);
+        }else{
+            $repository = $this->getDoctrine()->getRepository(Ad::class);
+            $ads = $repository->findBy(['buyer' => $this->getUser()],['date' => 'DESC']);
+        }
+
 
         return $this->render(
             'ad/index.html.twig',
             [
-                'ad' => $ad
+                'ads' => $ads
             ]
         );
     }
