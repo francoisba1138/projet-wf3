@@ -54,7 +54,7 @@
             <ul class="list-group bg-custom">
                 {% for ad in ads %}
                     <li class="list-group-item bg-custom">
-                        <a class="text-dark" href="{{ path('app_add_detail', {'id': ad.id}) }}">
+                        <a class="text-dark" href="{{ path('app_ad_detail', {'id': ad.id}) }}">
                             {{ ad }} proposé par {{ ad.sellerAds }}
                         </a>
                     </li>
