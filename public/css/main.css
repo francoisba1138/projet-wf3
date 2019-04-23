@@ -17,17 +17,60 @@ body {
 
 }
 
+
+.btn-outline-primary{
+    border-color: rgb(222, 89, 25);
+    color:rgb(222, 89, 25);
+
+
+}
+
+.btn-outline-primary:hover{
+    border-color: rgb(222, 89, 25);
+    background : rgb(222, 89, 25);
+    color: rgb(255, 255, 255);
+
+
+}
+
+.btn-primary{
+    border-color: rgb(168, 74, 24);
+    background : rgb(222, 89, 25);
+
+}
+
+
+.btn-primary:hover{
+    border-color: rgb(168, 74, 24);
+    background : rgb(168, 74, 24);
+}
+
+.form-control, .btn{
+    border-radius: 0px;
+}
+
+
 .bg-navbar{
 
     background: rgb(222, 89, 25);
 }
+/*, .list-group-item,*/
 
-.titre {
-    font-family: 'Press Start 2P', monospace;
-}
-.texte{
+.texte,label, input, .btn, a {
     font-family: 'VT323', monospace;
-    font-size: 25px;
+    font-size: 1.5em;
+}
+
+.form-group input{
+    font-size: 1.3em;
+}
+
+.titre, h1, h2, h3, h4, h5, .navbar a, .nav a  {
+    font-family: 'Press Start 2P', monospace;
+
+}
+.navbar a, .nav a, .btn-warning{
+    font-size: inherit;
 }
 
 .image-small {
