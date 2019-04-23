@@ -35,7 +35,9 @@
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p>{{ comment.content }}</p>
-                        <footer class="blockquote-footer">{{ comment.author }} <img class="image-small" src="{{ asset('/img/profile/' ~ comment.author.image ) }}" alt=""></footer>
+                            <footer class="blockquote-footer">{{ comment.author }}
+                                <img class="image-small" src="{{ asset('/img/profile/' ~ comment.author.image ) }}" alt="">
+                            </footer>
                     </blockquote>
                 </div>
             </div>

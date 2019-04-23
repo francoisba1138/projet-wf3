@@ -8,8 +8,11 @@
     <ul class="list-group">
         {% for seller in sellers %}
                 <li class="list-group-item bg-custom">
-                    <a class="text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} -
-                        {{ seller.shopName }}          {#{{ ad }} proposé par {{ ad.sellerAds }}</a>#}
+                    <a class="text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} - {{ seller.shopName }}
+                        {% for ad in ads %}
+                            {{ ad }}
+                        {% endfor %}
+                    </a>
                 </li>
         {% endfor %}
     </ul>
