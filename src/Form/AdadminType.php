@@ -3,15 +3,18 @@
 namespace App\Form;
 
 use App\Entity\Ad;
+use App\Entity\Game;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AdType extends AbstractType
+class AdadminType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -32,9 +35,11 @@ class AdType extends AbstractType
 
 
             ->add('game',
-                TextType::class,
+                EntityType::class,
                 [
-                    'label' => 'Jeu'
+                    'label' => 'Jeu',
+                    'class' => Game::class
+
                 ]
             )
 
@@ -71,9 +76,10 @@ class AdType extends AbstractType
                 ]
             )
             ->add('buyer',
-                TextType::class,
+                EntityType::class,
                 [
-                    'label' => 'Acheteur'
+                    'label' => 'Acheteur',
+                    'class' => User::class
                 ]
             )
 

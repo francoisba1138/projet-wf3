@@ -3,4 +3,19 @@
 
 {% block body %}
 
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.Target) }}
+    {{ form_row(form.Game) }}
+    {{ form_row(form.content) }}
+
+    <input type="submit" value="Modifier" class="btn btn-outline-primary mb-3">
+    {{ form_end(form) }}
+
+
+
+
+
+
 {% endblock %}
