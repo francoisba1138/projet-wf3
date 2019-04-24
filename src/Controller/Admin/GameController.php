@@ -125,7 +125,8 @@ $date=$game->getDate();
                 [
 
                     'form' => $form->createView(),
-                    'original_image' => $originalImage
+                    'original_image' => $originalImage,
+                    'game'=>$game
 
 
                 ]

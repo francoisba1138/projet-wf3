@@ -35,7 +35,7 @@ class GameadminType extends AbstractType
             ->add('date',
                 DateType::class,
                 [
-                    'label' => 'Date',
+                    'label' => 'Date de sortie',
                     'widget' => 'single_text',
                     'format' => 'yyyy'
 
@@ -45,7 +45,7 @@ class GameadminType extends AbstractType
             ->add('cover',
                 FileType::class,
                 [
-                    'label' => 'Image de profil',
+                    'label' => 'Image de Cover',
                     // champ optionnel
                     'required' => false
                 ]

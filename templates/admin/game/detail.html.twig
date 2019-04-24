@@ -2,7 +2,8 @@
 {% block title %}{{ game.title }}{% endblock %}
 
 {% block body %}
-
+    <div class="col-6 bg-custom mx-auto">
+<h1>Modifier le Jeu</h1>
 
     {{ form_start(form) }}
     {{ form_row(form.title) }}
@@ -10,6 +11,8 @@
     {{ form_row(form.date) }}
     {%  if original_image %}
         <img src="{{ asset('img/cover/' ~ original_image) }}" height="200px">
+        {% else %}
+        <p>Aucune image enregistrée</p>
     {% endif %}
     {{  form_row(form.cover) }}
 
@@ -20,6 +23,6 @@
     {{ form_end(form) }}
 
 
-
+    </div>
 
 {% endblock %}
