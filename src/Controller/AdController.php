@@ -18,8 +18,27 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdController extends AbstractController
 {
+
     /**
-     * @Route("/")
+     * @Route("/public_ad")
+     */
+    public function publicAds()
+    {
+        $repository = $this->getDoctrine()->getRepository(Ad::class);
+        $ads = $repository->findAll();
+
+        return $this->render(
+            'ad/public_ads.html.twig',
+            [
+                'ads' => $ads
+            ]
+        );
+    }
+
+
+
+    /**
+     * @Route("/mes_annonces")
      */
     public function index()
     {
@@ -27,12 +46,13 @@ class AdController extends AbstractController
         {
             if ($this->getUser()->getRole() == 'ROLE_SELLER') {
 
-
                 $repository = $this->getDoctrine()->getRepository(Ad::class);
                 $ads = $repository->findBy(['seller' => $this->getUser()], ['date' => 'DESC']);
+
             } elseif ($this->getUser()->getRole() == 'ROLE_BUYER') {
                 $repository = $this->getDoctrine()->getRepository(Ad::class);
                 $ads = $repository->findBy(['buyer' => $this->getUser()], ['date' => 'DESC']);
+
             }
 
             return $this->render(
@@ -45,6 +65,7 @@ class AdController extends AbstractController
         return $this->redirectToRoute('app_index_index');
         }
     }
+
 
     /**
      * @Route("/ajout")
