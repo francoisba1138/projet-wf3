@@ -1,8 +1,48 @@
+h1,.h1{
+
+    font-size: 1.7rem
+
+}
+
+h2,.h2{
+
+    font-size: 1.6rem
+
+}
+h3,.h3{
+
+    font-size: 1.5rem
+
+}
+h4,.h4{
+
+    font-size: 1.4rem
+
+}
+h5,.h5{
+
+    font-size: 1.3rem
+
+}
+h6,.h6{
+
+    font-size: 1.2rem
+
+}
+
+
 body {
     background-repeat: repeat;
     background-image: url(../img/background-3.gif);
     background-attachment: fixed;
     background-size: initial;
+}
+
+.footer{
+    height : 56px;
+    margin:0;
+    padding: 10px;
+
 }
 
 /*hauteur minimale et positionnement du footer*/
@@ -59,17 +99,26 @@ body {
 .texte,label, input, .btn, a, .card, p {
     font-family: 'VT323', monospace;
     font-size: 20px;
+}
+
+a{
+
     color: black;
 }
+
 
 .form-group input{
     font-size: 18px;
 }
 
-.titre, h1, h2, h3, h4, h5, .navbar a, .nav a  {
+.titre, h1, h2, h3, h4, h5, h6, h1, .h2, .h3, .h4, .h5, .h6, .navbar a, .nav a  {
     font-family: 'Press Start 2P', monospace;
-
 }
+
+
+
+
+
 .navbar a, .nav a {
     font-size: inherit;
 }

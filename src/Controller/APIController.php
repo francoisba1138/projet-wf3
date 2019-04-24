@@ -13,14 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class APIController extends AbstractController
 {
 
-/*
+
     /**
      * recherche nom du jeu
      *
      * @Route("/jeu")
      */
-
-/*    public function gamesearch(Request $request){
+   public function gamesearch(Request $request){
 
         $form = $this->createFormBuilder()
             ->add('name',
@@ -56,13 +55,13 @@ class APIController extends AbstractController
 
 
     }
-    */
+
 
 
     /**
      * resultat recherche nom du jeu
      *
-     * @Route("/jeu/recherche/{name}/{scroll}", defaults={"name" : " ","scroll": 0})
+     * @Route("/jeu/recherche/{name}/{scroll}", defaults={"scroll": 0})
      */
     public function games($name,$scroll,Request $request )
     {

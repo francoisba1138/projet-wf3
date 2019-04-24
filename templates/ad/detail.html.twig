@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ ad.title }}{% endblock %}
 {% block body %}
-
+    {{ ad.title }}
+    {{ ad.game }}
+    {{ ad.cond }}
+    {{ ad.status }}
+    {{ ad.content }}
+    {{ ad.price }}
 {% endblock %}
 
