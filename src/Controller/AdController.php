@@ -82,6 +82,8 @@ class AdController extends AbstractController
      */
     public function detail()
     {
+
+        
         return $this->render(
             'ad/detail.html.twig'
         );
