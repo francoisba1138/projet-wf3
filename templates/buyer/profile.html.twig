@@ -1,67 +1,71 @@
 {% extends 'base.html.twig' %}
 {% block title %}Profil de {{ buyer }}{% endblock %}
 {% block body %}
-    <div class="container">
-        <div class="row titre">
-            <h1>{{ buyer }}</h1>
+    <div class="bg-custom p-4 mb-5 col-12">
+        <h1 class="titre h3">{{ buyer }}</h1>
+        <div class="row p-2">
+            <div class="col-md-5 mx-auto col-12">
+                {%  if buyer.image %}
+                    <img class="img-fluid mx-auto" id="profile" src="{{ asset('/img/profile/' ~ buyer.image) }}" height="200px">
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-7">
+                <p>{{ buyer.firstname}} :</p>
+                <p>{{ buyer.presentation}}</p>
+            </div>
+            <div class="col-12 col-md-7 pt-2">
+                {% if app.user %}
+                    {% if app.user.id == buyer.id %}
+                        <a class="btn btn-primary" href="{{ path('app_buyer_edit', {'id': app.user.id }) }}">Modifier mon Profil</a>
+                    {% endif %}
+                {% endif %}
+            </div>
         </div>
-        {%  if buyer.image %}
-            <img src="{{ asset('/img/profile/' ~ buyer.image) }}" height="200px">
-        {% endif %}
-        {{ buyer.firstname}}
-        {{ buyer.presentation}}
-        {% if app.user %}
-            {% if app.user.id == buyer.id %}
-                <a class="btn btn-warning" href="{{ path('app_buyer_edit', {'id': app.user.id }) }}">Modifier mon Profil</a>
-            {% endif %}
-        {% endif %}
-        <p>La collection de {{ buyer }}</p>
+    </div>
+    <div class="bg-custom col-12 p-4 mb-5">
+        {# Affichage de la collection #}
+        <h2 class="titre h4">La collection de {{ buyer.firstname }}</h2>
         {% for jeu in collection %}
             <p>{{ jeu.title }} - ({{ jeu.date|date('Y') }}) - {{ jeu.platform }}</p>
         {% else %}
-            <p>{{ buyer }} n'a pas encore de collection </p>
+            <p>{{ buyer }} n'a pas encore de collection</p>
         {% endfor %}
         {% if app.user %}
             {% if app.user.id == buyer.id %}
-              <a class="btn btn-primary" href="#">Ajouter un jeu </a>
+                <a class="btn btn-primary" href="#">Ajouter un jeu </a>
             {% endif %}
         {% endif %}
     </div>
-
-
-
-{# Affichage des Commentaires #}
-
-    <h2>Commentaires</h2>
-
-    <div class="row">
-
-        {%  for comment in comments %}
-
-            <div class="card col-lg-12">
-                <div class="card-header">
-                    {{ comment.title }}
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>{{ comment.content }}</p>
-                        <footer class="blockquote-footer">{{ comment.author }} <img class="image-small" src="{{ asset('/img/profile/' ~ comment.author.image ) }}" alt=""></footer>
-                    </blockquote>
-                </div>
-            </div>
-
+    {# Affichage des annonces #}
+<div class="bg-custom col-12 p-4 mb-5">
+    <h2 class="titre h4">Les annonces de {{ buyer.firstname }}</h2>
+    {% for ad in ads %}
+        <a href="{{ path('app_ad_index', {'id': app.user.id }) }}">{{ ad.game }} - {{ ad.title }}</a>
         {% else %}
-            Pas de commentaires
-
-        {% endfor %}
-
-
+        <p>{{ buyer.firstname }} n'a pas posté d'annonces</p>
+    {% endfor %}
 </div>
-
-
-
-
-
+    {# Affichage des Commentaires #}
+    <div class="bg-custom col-12 p-4 mb-5">
+        <h2 class="titre h4">Commentaires</h2>
+        <div class="row">
+            {%  for comment in comments %}
+                <div class="card">
+                    <div class="card-header">
+                        {{ comment.title }}
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{ comment.content }}</p>
+                            <footer class="blockquote-footer">{{ comment.author }} <img class="image-small img-thumbnail" src="{{ asset('/img/profile/' ~ comment.author.image ) }}" alt=""></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            {% else %}
+                <p>Pas de commentaires</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
 

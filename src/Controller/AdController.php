@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\Game;
 use App\Form\AdType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,6 @@ class AdController extends AbstractController
     {
         if ($this->getUser()->getRole()=='ROLE_SELLER'){
 
-            dump($this->getUser()->getRole());
 
             $repository = $this->getDoctrine()->getRepository(Ad::class);
             $ads = $repository->findBy(['seller' => $this->getUser()],['date' => 'DESC']);
@@ -31,7 +31,6 @@ class AdController extends AbstractController
             $repository = $this->getDoctrine()->getRepository(Ad::class);
             $ads = $repository->findBy(['buyer' => $this->getUser()],['date' => 'DESC']);
         }
-
 
         return $this->render(
             'ad/index.html.twig',

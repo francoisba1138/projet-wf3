@@ -52,10 +52,7 @@ class BuyerController extends AbstractController
         $role= $buyer->getRole();
         $collection= $buyer->getCollection();
         $comments= $buyer->getUserComment();
-
-        dump($collection);
-        dump($comments);
-
+        $ads= $buyer->getBuyerAds();
 
         if ($role=='ROLE_BUYER') {
 
@@ -65,6 +62,7 @@ class BuyerController extends AbstractController
                 'buyer' => $buyer,
                 'collection' => $collection,
                 'comments' => $comments,
+                'ads' => $ads
 
             ]
         );
@@ -86,7 +84,6 @@ class BuyerController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $originalImage = null;
 
-
         if ($role=='ROLE_BUYER') {
 
             // si le buyer contient une image
@@ -100,24 +97,19 @@ class BuyerController extends AbstractController
                 );
             }
 
-
             $form = $this->createForm(BuyereditType::class, $buyer );
             $form->handleRequest($request);
-
 
             if( $form->isSubmitted()){
 
                 dump($form->isValid());
                 if( $form->isValid() ) {
-
-
                     /**
                      * @var UploadedFile $image
                      */
                     $image = $buyer->getImage();
 
                     dump($image);
-
 
                     // s'il y a eu une image uploadée
                     if( !is_null($image) ) {
@@ -164,13 +156,8 @@ class BuyerController extends AbstractController
                 ]
             );
 
-
         } else {
-
             return $this->redirectToRoute('app_index_index');
         }
-
     }
-
-
 }
