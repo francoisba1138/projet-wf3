@@ -78,14 +78,30 @@ class AdController extends AbstractController
 
 
     /**
-     * @Route("/detail")
+     * @Route("/{id}", requirements={"id": "\d+"})
      */
-    public function detail()
+    public function detail(Ad $ad)
     {
-
+        $date=$ad->getDate();
+        $price=$ad->getPrice();
+        $cond=$ad->getCond();
+        $status=$ad->getStatus();
+        $title=$ad->getTitle();
+        $content=$ad->getContent();
+        $game=$ad->getGame();
         
         return $this->render(
-            'ad/detail.html.twig'
+            'ad/detail.html.twig',
+            [
+                'ad' => $ad,
+                'date' => $date,
+                'price' => $price,
+                'cond' => $cond,
+                'status' => $status,
+                'title' => $title,
+                'content' => $content,
+                'game' => $game,
+            ]
         );
     }
 }
