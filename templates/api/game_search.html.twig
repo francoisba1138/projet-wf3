@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+
+    <input type="submit" value="Rechercher">
+    {{ form_end(form) }}
+
+{% endblock %}
+

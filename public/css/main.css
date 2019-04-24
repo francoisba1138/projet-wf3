@@ -56,7 +56,11 @@ body {
 }
 /*, .list-group-item,*/
 
-.texte,label, input, .btn, a, .card {
+p {
+    font-family: 'VT323', monospace;
+}
+
+.texte,label, select, input, .btn, a, .card {
     font-family: 'VT323', monospace;
     font-size: 20px;
 }

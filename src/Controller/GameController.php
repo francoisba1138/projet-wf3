@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class GameController
  * @package App\Controller
  *
- * @Route("/jeu")
+ * @Route("/jeux")
  */
 class GameController extends AbstractController
 {
