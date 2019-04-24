@@ -6,6 +6,7 @@ use App\Entity\Ad;
 use App\Entity\User;
 use App\Form\SellereditType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,7 @@ class SellerController extends AbstractController
 {
     /**
      * @Route("/")
+     *
      */
     public function index()
     {
@@ -34,15 +36,10 @@ class SellerController extends AbstractController
 
         );
 
-        $adrepository = $this->getDoctrine()->getRepository(Ad::class);
-
-        $ad =$adrepository->findAll();
-
 
         return $this->render('seller/index.html.twig',
             [
             'sellers' => $sellers,
-                'ad' => count($ad)
             ]
         );
 

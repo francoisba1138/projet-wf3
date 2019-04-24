@@ -23,7 +23,7 @@
             {% if app.user is null %}
                 <a class="titre btn btn-warning" href="{{ path('app_security_register') }}">Devenir vendeur</a>
             {% else %}
-                <a class="titre btn btn-warning" href="">Poster des annonces</a>
+                <a class="titre btn btn-warning" href="{{ path('app_ad_add') }}">Poster des annonces</a>
             {% endif %}
         </div>
     </div>

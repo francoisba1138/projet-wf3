@@ -8,8 +8,8 @@
     <ul class="list-group">
         {% for seller in sellers %}
                 <li class="list-group-item bg-custom d-flex justify-content-between">
-                    <a class="texte text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} - {{ seller.shopName }}</a>
-                    <a class=" texte text-dark" href="">{{ ad }} annonce(s) disponibles</a>
+                    <a class="texte text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}">{{ seller }} - {{ seller.shopName }}</a>
+                    <a class=" texte text-dark" href="{{ path('app_ad_index', {'id': app.user.id }) }}">{{ seller.sellerAds.count }} annonce(s) disponibles</a>
                 </li>
         {% endfor %}
     </ul>

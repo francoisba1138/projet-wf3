@@ -71,15 +71,16 @@ class SellereditType extends AbstractType
                 // 2 champs qui doivent avoir la même valeur
                 RepeatedType ::class,
                 [
+                    'required' => false,
                     // ... de type password
                     'type' => PasswordType::class,
                     // options du 1er des 2 champs
                     'first_options' => [
-                        'label' => 'Mot de passe'
+                        'label' => 'Mot de passe',
                     ],
                     // options du second champ
                     'second_options' => [
-                        'label' => 'Confirmation du mot de passe'
+                        'label' => 'Confirmation du mot de passe',
                     ],
                     // message si les 2 champs n'ont pas la même valeur
                     'invalid_message' => 'La confirmation ne correspond pas au mot de passe'

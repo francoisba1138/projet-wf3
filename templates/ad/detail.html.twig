@@ -1,6 +1,23 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ ad.title }}{% endblock %}
 {% block body %}
-
+    <div class="bg-custom p-4 mb-5">
+        <h1 class="titre">{{ ad.game }} | {{ ad.title }}</h1>
+        <div class="row p-2">
+            <div class="col-md-5 mx-auto">
+                {% if game.cover is null %}
+                    <img class="col-sm  img-fluid mx-auto" src="{{ asset('img/cover/default-cover.jpg') }}" alt="jaquette de {{ game.title }}">
+                {% else %}
+                    <img class="col-sm img-fluid mx-auto" src="{{ asset('img/cover/' ~ game.cover) }}" alt="jaquette de {{ game.title }}">
+                {% endif %}
+            </div>
+            <div class="col-md-7">
+                <p><a class="card-text">Etat du produit : {{ ad.cond }}</a></p>
+                <p><a class="card-text">Statut : {{ ad.status }}</a></p>
+                <p><a class="card-text">{{ ad.content }}</a></p>
+                <p><a class="card-text">Prix {{ ad.price }} €</a></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
