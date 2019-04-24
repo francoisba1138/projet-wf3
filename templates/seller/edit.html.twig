@@ -4,6 +4,7 @@
     {{ form_start(form) }}
     {{ form_row(form.firstname) }}
     {{ form_row(form.lastname) }}
+    {{ form_row(form.shopName) }}
     {{ form_row(form.email) }}
     {{ form_row(form.plainPassword) }}
     {{ form_row(form.address) }}
@@ -12,7 +13,6 @@
         <img src="{{ asset('img/profile/' ~ original_image) }}" height="200px">
     {% endif %}
     {{  form_row(form.image) }}
-
     <input type="submit" value="Modifier" class="btn btn-outline-primary mb-3">
     {{ form_end(form) }}
 

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\Comment;
+use App\Entity\Game;
 use App\Form\AdType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,15 +86,8 @@ class AdController extends AbstractController
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
      */
-    public function detail(Ad $ad)
+    public function detail(Ad $ad, Game $game, Comment $comment)
     {
-        $date=$ad->getDate();
-        $price=$ad->getPrice();
-        $cond=$ad->getCond();
-        $status=$ad->getStatus();
-        $title=$ad->getTitle();
-        $content=$ad->getContent();
-        $game=$ad->getGame();
 
         $date=$ad->getDate();
         $price=$ad->getPrice();
@@ -101,6 +96,7 @@ class AdController extends AbstractController
         $title=$ad->getTitle();
         $content=$ad->getContent();
         $game=$ad->getGame();
+        $cover=$game->getCover();
 
         return $this->render(
             'ad/detail.html.twig',
@@ -113,6 +109,7 @@ class AdController extends AbstractController
                 'title' => $title,
                 'content' => $content,
                 'game' => $game,
+                'cover' => $cover
             ]
         );
     }

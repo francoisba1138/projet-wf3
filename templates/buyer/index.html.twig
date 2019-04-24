@@ -7,7 +7,7 @@
             {% for buyer in buyers %}
                 <li class="list-group-item bg-custom d-flex justify-content-between">
                     <a class="texte text-dark" href="{{ path('app_buyer_detail', {'id':  buyer.id }) }}" class="">{{ buyer }}</a>
-                    <a class=" texte text-dark"> jeux dans la collection</a>
+                    <a class=" texte text-dark">{{ buyer.collection.count }} jeux dans la collection</a>
                 </li>
             {% endfor %}
         </ul>
