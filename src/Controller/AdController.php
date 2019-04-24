@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Entity\Game;
 use App\Form\AdType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +16,27 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdController extends AbstractController
 {
+
     /**
-     * @Route("/")
+     * @Route("/public_ad")
+     */
+    public function publicAds()
+    {
+        $repository = $this->getDoctrine()->getRepository(Ad::class);
+        $ads = $repository->findAll();
+
+        return $this->render(
+            'ad/public_ads.html.twig',
+            [
+                'ads' => $ads
+            ]
+        );
+    }
+
+
+
+    /**
+     * @Route("/mes_annonces")
      */
     public function index()
     {
@@ -39,6 +57,7 @@ class AdController extends AbstractController
             ]
         );
     }
+
 
     /**
      * @Route("/ajout")

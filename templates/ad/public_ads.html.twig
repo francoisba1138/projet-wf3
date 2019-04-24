@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+
+{% block body %}
+    {% for ad in ads %}
+        <ul>
+            <li>
+                <a href="{{ path('app_ad_detail', {'id': ad.id }) }}">{{ ad.title }}</a>
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock %}
+
+
+
