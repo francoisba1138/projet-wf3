@@ -48,6 +48,12 @@ body {
     background-size: initial;
 }
 
+.home-btn{
+
+    font-size: 1.3em;
+
+}
+
 .footer{
     height : 56px;
     margin:0;
@@ -97,6 +103,14 @@ body {
 
 .form-control, .btn{
     border-radius: 0px;
+}
+
+
+.texte-orange{
+
+    color : rgb(222, 89, 25);
+
+
 }
 
 
