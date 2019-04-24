@@ -44,12 +44,13 @@ class AdController extends AbstractController
         {
             if ($this->getUser()->getRole() == 'ROLE_SELLER') {
 
-
                 $repository = $this->getDoctrine()->getRepository(Ad::class);
                 $ads = $repository->findBy(['seller' => $this->getUser()], ['date' => 'DESC']);
+
             } elseif ($this->getUser()->getRole() == 'ROLE_BUYER') {
                 $repository = $this->getDoctrine()->getRepository(Ad::class);
                 $ads = $repository->findBy(['buyer' => $this->getUser()], ['date' => 'DESC']);
+
             }
 
             return $this->render(
@@ -106,13 +107,6 @@ class AdController extends AbstractController
      */
     public function detail(Ad $ad)
     {
-        $date=$ad->getDate();
-        $price=$ad->getPrice();
-        $cond=$ad->getCond();
-        $status=$ad->getStatus();
-        $title=$ad->getTitle();
-        $content=$ad->getContent();
-        $game=$ad->getGame();
 
         $date=$ad->getDate();
         $price=$ad->getPrice();
