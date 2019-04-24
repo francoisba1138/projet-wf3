@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Entity\Game;
 use App\Form\AdType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,22 +21,27 @@ class AdController extends AbstractController
      */
     public function index()
     {
-        if ($this->getUser()->getRole()=='ROLE_SELLER'){
+        if($this->getUser() != null)
+        {
+            if ($this->getUser()->getRole() == 'ROLE_SELLER') {
 
 
-            $repository = $this->getDoctrine()->getRepository(Ad::class);
-            $ads = $repository->findBy(['seller' => $this->getUser()],['date' => 'DESC']);
-        }else{
-            $repository = $this->getDoctrine()->getRepository(Ad::class);
-            $ads = $repository->findBy(['buyer' => $this->getUser()],['date' => 'DESC']);
+                $repository = $this->getDoctrine()->getRepository(Ad::class);
+                $ads = $repository->findBy(['seller' => $this->getUser()], ['date' => 'DESC']);
+            } elseif ($this->getUser()->getRole() == 'ROLE_BUYER') {
+                $repository = $this->getDoctrine()->getRepository(Ad::class);
+                $ads = $repository->findBy(['buyer' => $this->getUser()], ['date' => 'DESC']);
+            }
+
+            return $this->render(
+                'ad/index.html.twig',
+                [
+                    'ads' => $ads
+                ]
+            );
+        } else {
+        return $this->redirectToRoute('app_index_index');
         }
-
-        return $this->render(
-            'ad/index.html.twig',
-            [
-                'ads' => $ads
-            ]
-        );
     }
 
     /**
@@ -76,6 +80,8 @@ class AdController extends AbstractController
      */
     public function detail()
     {
+
+
         return $this->render(
             'ad/detail.html.twig'
         );
