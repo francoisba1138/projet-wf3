@@ -4,9 +4,9 @@
     <h1>Mes annonces</h1>
     <div class="container">
     <table class="table table-bordered bg-custom col-md-4 col-12">
-        {% for article in ads %}
+        {% for ad in ads %}
             <tr>
-                <td><a href="#">{{ article.title }}</a></td>
+                <td><a href="{{ path('app_ad_detail', {'id': ad.id}) }}">{{ ad.title }}</a></td>
             </tr>
         </table>
         {% else %}

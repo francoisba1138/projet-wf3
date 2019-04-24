@@ -19,7 +19,7 @@ class Ad
 
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date;
 
@@ -70,6 +70,10 @@ class Ad
      */
     private $game;
 
+    public function __construct()
+    {
+        $this->setDate(new \DateTime());
+    }
 
     public function getId(): ?int
     {

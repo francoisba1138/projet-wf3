@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdController extends AbstractController
 {
     /**
-     * @Route("/{id}", requirements={"id": "\d+"})
+     * @Route("/")
      */
     public function index()
     {
@@ -43,14 +43,20 @@ class AdController extends AbstractController
     /**
      * @Route("/ajout")
      */
-    public function add(Ad $ad, Request $request)
+    public function add(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $ad = new Ad();
         $form = $this->createForm(AdType::class, $ad);
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
             if($form->isValid()){
+                $ad
+                    ->setDate(new \DateTime())
+                    ->setSeller($this->getUser());
+
                 $em->persist($ad);
                     $em->flush();
                     $this->addFlash('success', "L'annonce est enregistré");

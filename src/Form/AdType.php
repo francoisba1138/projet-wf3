@@ -7,6 +7,7 @@ use App\Entity\Game;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,6 +19,7 @@ class AdType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            /*
             ->add(
                 'date',
                 DateType::class,
@@ -27,6 +29,7 @@ class AdType extends AbstractType
                     'widget' => 'single_text'
                 ]
             )
+            */
 
             ->add('price',
                 IntegerType::class,
@@ -63,22 +66,6 @@ class AdType extends AbstractType
                 ]
             )
 
-            ->add(
-                'seller',
-                EntityType::class,
-                [
-                    'label' => 'Vendeur',
-                    'class' => User::class
-                ]
-            )
-
-            ->add('buyer',
-                EntityType::class,
-                [
-                    'label' => 'Acheteur',
-                    'class' => User::class
-                ]
-            )
 
             ->add('game',
                 EntityType::class,
@@ -88,7 +75,6 @@ class AdType extends AbstractType
 
                 ]
             )
-
         ;
     }
 
