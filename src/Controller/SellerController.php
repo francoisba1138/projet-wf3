@@ -60,6 +60,14 @@ class SellerController extends AbstractController
         $comments = $seller->getUserComment();
         $collection = $seller->getCollection();
 
+
+
+
+
+
+
+
+
         if ($role=='ROLE_SELLER') {
 
 

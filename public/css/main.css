@@ -31,6 +31,16 @@ h6,.h6{
 }
 
 
+Ul{
+    padding: 0;
+}
+
+li{
+    list-style-type: none;
+
+}
+
+
 body {
     background-repeat: repeat;
     background-image: url(../img/background-3.gif);
