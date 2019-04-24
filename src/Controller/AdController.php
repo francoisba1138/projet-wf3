@@ -94,6 +94,14 @@ class AdController extends AbstractController
         $content=$ad->getContent();
         $game=$ad->getGame();
 
+        $date=$ad->getDate();
+        $price=$ad->getPrice();
+        $cond=$ad->getCond();
+        $status=$ad->getStatus();
+        $title=$ad->getTitle();
+        $content=$ad->getContent();
+        $game=$ad->getGame();
+
         return $this->render(
             'ad/detail.html.twig',
             [
