@@ -40,22 +40,27 @@ class AdController extends AbstractController
      */
     public function index()
     {
-        if ($this->getUser()->getRole()=='ROLE_SELLER'){
+        if($this->getUser() != null)
+        {
+            if ($this->getUser()->getRole() == 'ROLE_SELLER') {
 
 
-            $repository = $this->getDoctrine()->getRepository(Ad::class);
-            $ads = $repository->findBy(['seller' => $this->getUser()],['date' => 'DESC']);
-        }else{
-            $repository = $this->getDoctrine()->getRepository(Ad::class);
-            $ads = $repository->findBy(['buyer' => $this->getUser()],['date' => 'DESC']);
+                $repository = $this->getDoctrine()->getRepository(Ad::class);
+                $ads = $repository->findBy(['seller' => $this->getUser()], ['date' => 'DESC']);
+            } elseif ($this->getUser()->getRole() == 'ROLE_BUYER') {
+                $repository = $this->getDoctrine()->getRepository(Ad::class);
+                $ads = $repository->findBy(['buyer' => $this->getUser()], ['date' => 'DESC']);
+            }
+
+            return $this->render(
+                'ad/index.html.twig',
+                [
+                    'ads' => $ads
+                ]
+            );
+        } else {
+        return $this->redirectToRoute('app_index_index');
         }
-
-        return $this->render(
-            'ad/index.html.twig',
-            [
-                'ads' => $ads
-            ]
-        );
     }
 
 
@@ -108,7 +113,15 @@ class AdController extends AbstractController
         $title=$ad->getTitle();
         $content=$ad->getContent();
         $game=$ad->getGame();
-        
+
+        $date=$ad->getDate();
+        $price=$ad->getPrice();
+        $cond=$ad->getCond();
+        $status=$ad->getStatus();
+        $title=$ad->getTitle();
+        $content=$ad->getContent();
+        $game=$ad->getGame();
+
         return $this->render(
             'ad/detail.html.twig',
             [
