@@ -41,6 +41,8 @@ li{
 }
 
 
+
+
 body {
     background-repeat: repeat;
     background-image: url(../img/background-3.gif);
@@ -106,7 +108,8 @@ body {
 }
 
 
-.texte-orange{
+
+.texte-orange, a:hover{
 
     color : rgb(222, 89, 25);
 

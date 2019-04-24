@@ -2,7 +2,10 @@
 {% block title %}{{ ad.title }}{% endblock %}
 {% block body %}
     <div class="bg-custom p-4 mb-5">
-        <h1 class="titre">{{ ad.game }} | {{ ad.title }}</h1>
+        <h1 class="titre">{{ ad.game }} </h1>
+        <h2>{{ ad.title }}</h2>
+
+
         <div class="row p-2">
             <div class="col-md-5 mx-auto">
                 {% if game.cover is null %}
@@ -12,10 +15,12 @@
                 {% endif %}
             </div>
             <div class="col-md-7">
-                <p><a class="card-text">Etat du produit : {{ ad.cond }}</a></p>
-                <p><a class="card-text">Statut : {{ ad.status }}</a></p>
-                <p><a class="card-text">{{ ad.content }}</a></p>
-                <p><a class="card-text">Prix {{ ad.price }} €</a></p>
+                <p class="card-text">Proposé par : <a href="{{ path('app_admin_seller_detail', {'id': ad.seller.id}) }}">{{ ad.seller }}</a></p>
+                <p class="card-text">Etat du produit : {{ ad.cond }}</p>
+                <p class="card-text">Prix {{ ad.price }} €</></p>
+                <p class="card-text">Statut : {{ ad.status }}</p>
+                <p class="card-text">{{ ad.content }}</p>
+
             </div>
         </div>
     </div>
