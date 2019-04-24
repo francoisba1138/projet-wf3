@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block title %}Liste des membres{% endblock %}
 {% block body %}
-    {% for buyer in buyers %}
-       <p> <a href="{{ path('app_buyer_detail', {'id': buyer.id}) }}" class="">{{ buyer }}</a></p>
-    {% endfor %}
+    <div class="container bandeau1 bg-custom">
+        <h1 class="titre">Liste des membres</h1>
+        <ul class="list-group">
+            {% for buyer in buyers %}
+                <li class="list-group-item bg-custom d-flex justify-content-between">
+                    <a class="texte text-dark" href="{{ path('app_buyer_detail', {'id':  buyer.id }) }}" class="">{{ buyer }}</a>
+                    <a class=" texte text-dark"> jeux dans la collection</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

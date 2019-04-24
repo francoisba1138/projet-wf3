@@ -18,8 +18,8 @@
     </div>
 
     <div class="row d-flex bandeau2 mx-auto justify-content-between align-items-center p-3 mb-5">
-        <div class="col-12 col-md-3 titre text-light">Vous êtes vendeur ? Postez vos annonces !</div>
-        <div class="col-12 col-md-3 justify-content-center">
+        <div class="col-12 col-lg-3 titre text-light">Vous êtes vendeur ? Postez vos annonces !</div>
+        <div class="col-12 col-lg-3 justify-content-center mr-5">
             {% if app.user is null %}
                 <a class="titre btn btn-warning" href="{{ path('app_security_register') }}">Devenir vendeur</a>
             {% else %}

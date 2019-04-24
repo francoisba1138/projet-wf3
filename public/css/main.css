@@ -56,13 +56,10 @@ body {
 }
 /*, .list-group-item,*/
 
-p {
-    font-family: 'VT323', monospace;
-}
-
-.texte,label, select, input, .btn, a, .card {
+.texte,label, input, .btn, a, .card, p {
     font-family: 'VT323', monospace;
     font-size: 20px;
+    color: black;
 }
 
 .form-group input{
@@ -73,7 +70,7 @@ p {
     font-family: 'Press Start 2P', monospace;
 
 }
-.navbar a, .nav a, .btn-warning{
+.navbar a, .nav a {
     font-size: inherit;
 }
 
@@ -98,4 +95,8 @@ p {
     font-size: 120%;
     background-size: initial;
     background-image: url(../img/bandeaux/bandeau3.jpg);
+}
+#profile {
+    border: orange;
+    border-style:groove;
 }

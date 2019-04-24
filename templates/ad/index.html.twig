@@ -2,13 +2,18 @@
 {% block title %}Mes annonces{% endblock %}
 {% block body %}
     <h1>Mes annonces</h1>
-    {% for article in ads %}
-        <tr>
-            <td><a href="#">{{ article.title }}</a></td>
-        </tr>
+    <div class="container">
+    <table class="table table-bordered bg-custom col-md-4 col-12">
+        {% for article in ads %}
+            <tr>
+                <td><a href="#">{{ article.title }}</a></td>
+            </tr>
+        </table>
         {% else %}
             <p>Vous n'avez pas encore d'annonce</p>
-    {% endfor %}
-        <a class="btn btn-primary" href="{{ path('app_ad_add') }}">Ajouter une annonce</a>
+        {% endfor %}
+        <a class="btn btn-primary col-12 col-md-4" href="{{ path('app_ad_add') }}">Ajouter une annonce</a>
+    </div>
 {% endblock %}
+
 

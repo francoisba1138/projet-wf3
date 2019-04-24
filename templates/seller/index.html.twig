@@ -3,16 +3,13 @@
 {% block title %}Liste des vendeurs{% endblock %}
 
 {% block body %}
-    <div class="container bandeau1 bg-custom">
+    <div class="container bandeau1 bg-custom p-3">
     <h1 class="titre">Liste des vendeurs</h1>
     <ul class="list-group">
         {% for seller in sellers %}
-                <li class="list-group-item bg-custom">
-                    <a class="text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} - {{ seller.shopName }}
-                        {% for ad in ads %}
-                            {{ ad }}
-                        {% endfor %}
-                    </a>
+                <li class="list-group-item bg-custom d-flex justify-content-between">
+                    <a class="texte text-dark" href="{{ path('app_seller_detail', {'id':  seller.id }) }}" class="">{{ seller }} - {{ seller.shopName }}</a>
+                    <a class=" texte text-dark" href="">{{ ad }} annonce(s) disponibles</a>
                 </li>
         {% endfor %}
     </ul>
