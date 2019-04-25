@@ -3,16 +3,12 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div class="bandeau1 row mx-auto bg-custom justify-content-between align-items-center p-3 mb-5">
-        <div class="m-4 ">
-            <h2 class="titre p-2">Messages du Staff</h2>
-            <p class="col-12 titre">
-                Bienvenue aux nouveaux membres !
-                Pokem ipsum dolor sit amet fishing rod Mint Berry Glacier Badge Servine ullamco laboris nisi Horsea.
-                Squirtle Umbreon Sewaddle Cubone Lumineon Satoshi Tajiri Happiny.
-                Venusaur Whirlipede Rotom Clamperl Poliwrath Rhyhorn Hive Badge.
-                Duis aute irure dolor in reprehenderit in voluptate Tirtouga Croagunk Galvantula Budew Poke Flute Squirtle.
-                Gold Golduck Electrode Combee Sawsbuck Kabuto Tyrogue.
+    <div class="bandeau1 row mx-auto bg-custom  align-items-center mb-5">
+        <div class="m-4 mx-auto ">
+            <h1 class="titre text-center mx-auto">Web<span class="texte-orange">Force</span>Games</h1>
+            <p class="col-12 text-center">
+
+
             </p>
         </div>
     </div>
@@ -29,9 +25,9 @@
     </div>
 
     <div class="bandeau1 row mx-auto bg-custom align-items-start p-3 mb-5">
-        <div class="col-12 col-lg-3 m-4 texte ">
-            <h2 class="titre h4 p-2">Derniers membres</h2>
-            <ul class="list-group bg-custom">
+        <div class="col-12 col-lg-4 m-4 texte mx-auto ">
+            <h2 class="titre h4 p-2 text-center">Derniers membres</h2>
+            <ul class="list-group bg-custom mx-auto">
                 {% for buyer in buyers %}
                     <li class="list-group-item bg-custom">
                         <a class="text-dark" href="{{ path('app_buyer_detail', {'id': buyer.id}) }}">
@@ -41,8 +37,8 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-12 col-lg-3 m-4 texte ">
-            <h2 class="titre h4 p-2">Derniers vendeurs</h2>
+        <div class="col-12 col-lg-4 m-4 texte mx-auto ">
+            <h2 class="titre h4 p-2 text-center">Derniers vendeurs</h2>
             <ul class="list-group bg-custom">
                 {% for seller in sellers %}
                     <li class="list-group-item bg-custom">
@@ -53,8 +49,8 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-12 col-lg-3 m-4 texte ">
-            <h2 class="titre h4 p-2">Dernières annonces</h2>
+        <div class="col-12 col-lg-4 m-4 texte mx-auto ">
+            <h2 class="titre h4 p-2 text-center">Dernières annonces</h2>
             <ul class="list-group bg-custom">
                 {% for ad in ads %}
                     <li class="list-group-item bg-custom">
@@ -68,12 +64,12 @@
     </div>
 
     <div class="row d-flex bandeau3 mx-auto justify-content-between align-items-center p-3 mb-5">
-        <div class="col-12 col-md-3 titre bg-light">Vous êtes nouveau ? Affichez votre collection !</div>
+        <div class="col-12 col-md-3 bg-light"><p class="home-btn">Vous êtes nouveau ? Affichez votre collection !</p></div>
         <div class="col-12 col-md-3  justify-content-center">
             {% if app.user is null %}
                 <a class="titre btn btn-light" href="{{ path('app_game_index') }}">Liste des jeux</a>
             {% else %}
-            <a class="titre btn btn-light" href="{{ path('app_seller_detail', {'id': app.user.id }) }}">Ajouter des jeux sur mon profil</a>
+                <a class="titre btn btn-light my-2" href="{{ path('app_seller_detail', {'id': app.user.id }) }}"><p class="home-btn">Ajouter des jeux sur mon profil</p></a>
             {% endif %}
         </div>
     </div>

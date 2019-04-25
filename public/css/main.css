@@ -31,11 +31,29 @@ h6,.h6{
 }
 
 
+Ul{
+    padding: 0;
+}
+
+li{
+    list-style-type: none;
+
+}
+
+
+
+
 body {
     background-repeat: repeat;
     background-image: url(../img/background-3.gif);
     background-attachment: fixed;
     background-size: initial;
+}
+
+.home-btn{
+
+    font-size: 1.3em;
+
 }
 
 .footer{
@@ -87,6 +105,15 @@ body {
 
 .form-control, .btn{
     border-radius: 0px;
+}
+
+
+
+.texte-orange, a:hover{
+
+    color : rgb(222, 89, 25);
+
+
 }
 
 

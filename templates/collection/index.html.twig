@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collections{% endblock %}
+
+
+
+{% block body %}
+
+    <h1 class="bg-custom p-3 text-center ">Les Collections</h1>
+
+{% for buyer in buyers %}
+
+{% if buyer.collection.count > 0 %}
+    <h2 class = "col-12 col-sm-8 h6 bg-custom p-3 text-center mx-auto text-light bg-navbar" >{{ buyer }}</h2>
+    <ul>
+      {% for game in buyer.collection %}
+<li class = "col-12 col-sm-8 bg-custom p-2 my-2 mx-auto" >
+    {{ game }}
+</li>
+
+    {% endfor %}
+    </ul>
+        {% endif %}
+
+    {% endfor %}
+
+
+
+
+{% endblock %}
