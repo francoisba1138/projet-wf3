@@ -43,7 +43,7 @@
     <div class="bg-custom col-12 p-4 mb-5">
         <h2 class="titre h4">Les annonces de {{ seller.firstname }}</h2>
         {% for ad in ads %}
-            <a href="{{ path('app_ad_detail', {'id': ad.id}) }}">{{ ad.game }} - {{ ad.title }}</a>
+            <div class=""><a href="{{ path('app_ad_detail', {'id': ad.id}) }}">{{ ad.game }} - {{ ad.title }} - {{ ad.status }}</a></div>
         {% else %}
             <p>{{ seller.firstname }} n'a pas posté d'annonces</p>
         {% endfor %}

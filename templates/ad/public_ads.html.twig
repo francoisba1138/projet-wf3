@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
-{% block title %}{% endblock %}
-
+{% block title %}Les annonces{% endblock %}
 {% block body %}
-    {% for ad in ads %}
-        <ul>
-            <li>
-                <a href="{{ path('app_ad_detail', {'id': ad.id }) }}">{{ ad.title }}</a>
-            </li>
+    <div class="container bandeau1 bg-custom p-3">
+        <h1 class="titre">Liste des Annonces</h1>
+        <ul class="list-group ">
+            {% for ad in ads %}
+                <li class="list-group-item bg-custom d-flex">
+                    <p><b><a class="texte text-dark" href="{{ path('app_ad_detail', {'id': ad.id }) }}">{{ ad.title }}</a></b> -
+                        <strong><a class="texte text-dark" href="{{ path('app_game_detail', {'id': ad.game.id }) }}">{{ ad.game }}</a></strong> -
+                        par <a class="texte text-dark" href="{{ path('app_seller_detail', {'id': ad.seller.id }) }}">{{ ad.seller }}</a> -
+                        {{ ad.status }}
+                    </p>
+                </li>
+            {% endfor %}
         </ul>
-    {% endfor %}
+    </div>
 {% endblock %}
-
 
 

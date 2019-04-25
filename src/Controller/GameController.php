@@ -21,7 +21,7 @@ class GameController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Game::class);
 
-        $games = $repository->findAll();
+        $games = $repository->findBy([],['title' => 'ASC']);
 
         return $this->render('game/index.html.twig', [
             'games' => $games

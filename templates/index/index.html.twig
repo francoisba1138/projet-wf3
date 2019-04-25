@@ -54,7 +54,7 @@
                 {% for ad in ads %}
                     <li class="list-group-item bg-custom">
                         <a class="text-dark" href="{{ path('app_ad_detail', {'id': ad.id}) }}">
-                           {{ ad.game }} - {{ ad }} proposé par {{ ad.seller }}
+                           <strong>{{ ad.game }}</strong> <br> {{ ad }} proposé par {{ ad.seller }}
                         </a>
                     </li>
                 {% endfor %}
@@ -67,11 +67,14 @@
             <p class="text-center home-btn">Vous êtes nouveau ?<br>Affichez votre collection !</p>
         </div>
         <div class="col-12 col-md-3">
-            {% if app.user is null %}
-                <a class="titre btn btn-light" href="{{ path('app_game_index') }}">Liste des jeux</a>
-            {% else %}
+            {% if is_granted('ROLE_BUYER') %}
+                <a class="titre btn btn-light my-2" href="{{ path('app_buyer_detail', {'id': app.user.id }) }}"><p class="home-btn">Ajouter des jeux sur mon profil</p></a>
+            {% elseif is_granted('ROLE_SELLER') %}
                 <a class="titre btn btn-light my-2" href="{{ path('app_seller_detail', {'id': app.user.id }) }}"><p class="home-btn">Ajouter des jeux sur mon profil</p></a>
+            {% else %}
+                <a class="titre btn btn-light" href="{{ path('app_game_index') }}">Liste des jeux</a>
             {% endif %}
+
         </div>
     </div>
 

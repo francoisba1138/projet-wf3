@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %} | Games</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %} | WFGames</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('lib/bootstrap/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -16,10 +17,13 @@
    {% if is_granted('ROLE_ADMIN') %}
     <ul class="nav sticky-top bg-warning justify-content-center">
         <li class="nav-item">
+            <a class="nav-link text-dark" href="{{ path('app_admin_seller_index') }}">Vendeurs</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_buyer_index') }}">Membres</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" href="{{ path('app_admin_seller_index') }}">Vendeurs</a>
+            <a class="nav-link text-dark" href="{{ path('app_admin_game_index') }}">Jeux</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_ad_index') }}">Annonces</a>
@@ -27,9 +31,7 @@
         <li class="nav-item">
             <a class="nav-link text-dark" href="{{ path('app_admin_comment_index') }}">Commentaires</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" href="{{ path('app_admin_game_index') }}">Jeux</a>
-        </li>
+
     </ul>
    {%  endif %}
     <!-- /Menu Admin -->
@@ -59,7 +61,7 @@
                     <a class="nav-link" href="{{ path('app_ad_publicads') }}">Annonces</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_index_contact') }}">Contact</a>
+                    <a class="nav-link" href="{{ path('app_api_gamesearch') }}">Bibliothèque</a>
                 </li>
                 </ul>
             <ul class=" ml-auto navbar-nav">
@@ -73,7 +75,7 @@
                 {% else %}
                 <li class="nav-item dropdown">
                     <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ app.user }}
+                        {{ app.user.firstname }}
                     </a>
                     <div class="dropdown-menu navbar-dark bg-navbar" aria-labelledby="navbarDropdownMenuLink">
                         {% if is_granted('ROLE_BUYER') %}
@@ -81,8 +83,8 @@
                         {% endif %}
                         {% if is_granted('ROLE_SELLER') %}
                             <a class="dropdown-item" href="{{ path('app_seller_detail', {'id': app.user.id }) }}">Mon Profil</a>
-                        {% endif %}
                             <a class="dropdown-item" href="{{ path('app_ad_index', {'id': app.user.id }) }}">Mes Annonces</a>
+                        {% endif %}
                             <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
                         {% endif %}
                     </div>
@@ -120,8 +122,10 @@
     <!-- / Contenu principal -->
 
     {% block footer %}
-        <footer class="footer bg-navbar text-light">
-            <p> &copy; {{ "now"|date("Y") }} Games - Tous droits réservés</p>
+        <footer class=" footer bg-navbar text-light">
+            <p class="container"> &copy; {{ "now"|date("Y") }} WFGames - Tous droits réservés  -
+                <a class="text-light" href="{{ path('app_index_contact') }}">Nous Contacter</a>
+            </p>
         </footer>
 
     {% endblock %}

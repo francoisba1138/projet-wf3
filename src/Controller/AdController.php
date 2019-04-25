@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Entity\Comment;
-use App\Entity\Game;
 use App\Form\AdType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -107,7 +105,7 @@ class AdController extends AbstractController
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
      */
-    public function detail(Ad $ad, Game $game, Comment $comment)
+    public function detail(Ad $ad)
     {
 
         $date=$ad->getDate();

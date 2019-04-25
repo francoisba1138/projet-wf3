@@ -1,52 +1,28 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Bibliothèque{% endblock %}
 {% block body %}
-
-    <h1 class="text-center col-12 col-sm-8 bg-custom mx-auto h3 p-2">Rechercher un jeu</h1>
-
-
-<div class="col-12 col-sm-8 bg-custom mx-auto p-2 text-center">
+    <h1 class="text-center col-12 col-sm-8 bg-custom mx-auto h3 p-2">Resultats pour "{{ name }}" </h1>
+    <div class="col-12 col-sm-8 bg-custom mx-auto p-2 text-center">
         {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    <input class="right btn btn-primary" type="submit" value="Rechercher">
-
-    {{ form_end(form) }}
-</div>
-
-
-
-
-
-
-<h2 class="h5 text-center col-12 col-sm-8 bg-custom mx-auto p-2 my-2">Resultats pour "{{ name }}" :</h2>
-
-
-
-
+        {{ form_row(form.name) }}
+        <input class="right btn btn-primary" type="submit" value="Rechercher">
+        {{ form_end(form) }}
+    </div>
     <ul class=" list-group col-12 col-sm-8 mx-auto">
-
-    {% for game in response %}
-
-<li class="bg-custom p-2 m-2">
-        <a class="" href="{{ path('app_api_gamedetails', {'id': game.id }) }}" class="">{{ game.name }}
-
-        </a>
-</li>
-
-    {% endfor %}
-
+        {% for game in response %}
+            <li class="bg-custom p-2 m-2">
+                <a class="" href="{{ path('app_api_gamedetails', {'id': game.id }) }}" class="">{{ game.name }}
+                </a>
+            </li>
+        {% endfor %}
     </ul>
-
-
     {% if page > 0 and page < count/50 %}
-    <a href="{{ path('app_api_games', {'name': request, 'scroll': page-1 }) }}"> << page précedente</a>
+        <div class="col-12 mx-auto justify-content-around">
+        <a class="btn btn-primary" href="{{ path('app_api_games', {'name': request, 'scroll': page-1 }) }}">page précedente</a>
     {% endif %}
-
-
     {% if page+2 <count/50 %}
-    <a href="{{ path('app_api_games', {'name': request, 'scroll': page+1 }) }}">page suivante>></a>
+        <a class="btn btn-primary" href="{{ path('app_api_games', {'name': request, 'scroll': page+1 }) }}">page suivante</a>
+        </div>
     {% endif %}
-
-
-    {% endblock %}
+{% endblock %}
 

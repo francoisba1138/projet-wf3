@@ -8,10 +8,10 @@
             <tr>
                 <td><a href="{{ path('app_ad_detail', {'id': ad.id }) }}">{{ ad.title }}</a></td>
             </tr>
-        </table>
         {% else %}
             <p>Vous n'avez pas encore d'annonce</p>
         {% endfor %}
+    </table>
         <a class="btn btn-primary col-12 col-md-4" href="{{ path('app_ad_add') }}">Ajouter une annonce</a>
     </div>
 {% endblock %}
