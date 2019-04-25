@@ -35,7 +35,7 @@
         {% endfor %}
         {% if app.user %}
             {% if app.user.id == seller.id %}
-                <a class="btn btn-primary" href="#">Ajouter un jeu </a>
+                <a class="btn btn-primary" href="{{ path('app_game_index') }}">Ajouter un jeu </a>
             {% endif %}
         {% endif %}
     </div>

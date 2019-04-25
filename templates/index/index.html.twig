@@ -6,15 +6,14 @@
     <div class="bandeau1 row mx-auto bg-custom  align-items-center mb-5">
         <div class="m-4 mx-auto ">
             <h1 class="titre text-center mx-auto">Web<span class="texte-orange">Force</span>Games</h1>
-            <p class="col-12 text-center">
-
-
+            <p class="col-12 h6 mt-4 text-center">
+                Achetez, vendez, collectionnez !
             </p>
         </div>
     </div>
 
-    <div class="row d-flex bandeau2 mx-auto justify-content-between align-items-center p-3 mb-5">
-        <div class="col-12 col-lg-3 titre text-light">Vous êtes vendeur ? Postez vos annonces !</div>
+    <div class="row d-flex bandeau2 mx-auto justify-content-between align-items-center p-2 mb-5">
+        <div class="col-12 col-lg-3 titre text-light">Vous êtes vendeur ? Postez vos annonces&nbsp;!</div>
         <div class="col-12 col-lg-3 justify-content-center mr-5">
             {% if app.user is null %}
                 <a class="titre btn btn-warning" href="{{ path('app_security_register') }}">Devenir vendeur</a>
@@ -64,8 +63,10 @@
     </div>
 
     <div class="row d-flex bandeau3 mx-auto justify-content-between align-items-center p-3 mb-5">
-        <div class="col-12 col-md-3 bg-light"><p class="home-btn">Vous êtes nouveau ? Affichez votre collection !</p></div>
-        <div class="col-12 col-md-3  justify-content-center">
+        <div class="col-12 col-md-3 bg-light">
+            <p class="text-center home-btn">Vous êtes nouveau ?<br>Affichez votre collection !</p>
+        </div>
+        <div class="col-12 col-md-3">
             {% if app.user is null %}
                 <a class="titre btn btn-light" href="{{ path('app_game_index') }}">Liste des jeux</a>
             {% else %}
